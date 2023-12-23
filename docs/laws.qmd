@@ -1,0 +1,75 @@
+---
+output: 
+  html_document:
+    mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+---
+
+# 20 laws and 40 isometris
+
+```{r, echo=F}
+# Load necessary library
+library(kableExtra)
+library(tibble)
+# Create the data.frame
+laws_df <- tribble(
+  ~Law_Number, ~North_vs_South, ~West_vs_East, ~Diagonal_vs_Diagonal,
+  "First Law", "$x_{1}=\\alpha_{1}+\\zeta(\\alpha_{1}-y_{1})$", "$g_{1}=\\alpha_{1}+\\gamma(\\alpha_{1}-h_{1})$", "$m_{1}=\\Omega_{1}+\\xi(\\Omega_{1}-n_{1})$",
+  "Second Law", "$x_{1}=\\lambda_{1}+\\zeta(\\lambda_{1}-y_{2})$", "$g_{1}=\\Omega_{1}+\\gamma(\\Omega_{1}-h_{2})$", "$m_{1}=\\lambda_{1}+\\xi(\\lambda_{1}-n_{2})$",
+  "Third Law", "$x_{1}=\\frac{\\alpha_{1}y_{2}-\\lambda_{1}y_{1}}{(\\alpha_{1}-\\lambda_{1})-(y_{1}-y_{2})}$", "$g_{1}=\\frac{\\alpha_{1}h_{2}-\\Omega_{1}h_{1}}{(\\alpha_{1}-\\Omega_{1})-(h_{1}-h_{2})}$", "$m_{1}=\\frac{\\Omega_{1}n_{2}-\\lambda_{1}n_{1}}{(\\Omega_{1}-\\lambda_{1})-(n_{1}-n_{2})}$",
+  "Fourth Law", "$x_{1}=\\frac{\\lambda_{1}+\\alpha_{1}-\\Omega_{2}}{2\\Omega_{1}}$", "$g_{1}=\\frac{\\Omega_{1}+\\alpha_{1}-\\lambda_{2}}{2\\lambda_{1}}$", "$m_{1}=\\frac{\\lambda_{1}+\\Omega_{1}-\\alpha_{2}}{2\\alpha_{1}}$",
+  "Fifth Law", "$y_{1}=\\alpha_{1}-\\zeta^{-1}(\\alpha_{1}-x_{1})$", "$h_{1}=\\alpha_{1}-\\gamma^{-1}(\\alpha_{1}-g_{1})$", "$n_{1}=\\Omega_{1}-\\xi^{-1}(\\Omega_{1}-m_{1})$",
+  "Sixth Law", "$y_{1}=\\lambda_{2}-\\zeta^{-1}(\\lambda_{1}-x_{1})$", "$h_{1}=\\Omega_{2}-\\gamma^{-1}(\\Omega_{1}-g_{1})$", "$n_{1}=\\lambda_{2}-\\xi^{-1}(\\lambda_{1}-m_{1})$",
+  "Seventh Law", "$y_{1}=\\frac{x_{1}\\lambda_{2}-x_{2}\\alpha_{1}}{(\\lambda_{2}-\\alpha_{1})-(x_{2}-x_{1})}$", "$h_{1}=\\frac{g_{1}\\Omega_{2}-g_{2}\\alpha_{1}}{(\\Omega_{2}-\\alpha_{1})-(g_{2}-g_{1})}$", "$n_{1}=\\frac{m_{1}\\lambda_{2}-m_{2}\\Omega_{1}}{(\\lambda_{2}-\\Omega_{1})-(m_{2}-m_{1})}$",
+  "Eighth Law", "$y_{1}=\\frac{\\lambda_{2}+\\alpha_{1}-\\Omega_{1}}{2\\Omega_{2}}$", "$h_{1}=\\frac{\\Omega_{2}+\\alpha_{1}-\\lambda_{1}}{2\\lambda_{2}}$", "$n_{1}=\\frac{\\lambda_{2}+\\Omega_{1}-\\alpha_{1}}{2\\alpha_{2}}$",
+  "Ninth Law", "$\\alpha_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{1}$", "$\\alpha_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{1}$", "$\\Omega_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{1}$",
+  "Tenth Law", "$\\alpha_{1}=\\Omega_{1}(x_{1}-x_{2})+\\lambda_{2}$", "$\\alpha_{1}=\\lambda_{1}(g_{1}-g_{2})+\\Omega_{2}$", "$\\Omega_{1}=\\alpha_{1}(m_{1}-m_{2})+\\lambda_{2}$",
+  "Eleventh Law", "$\\alpha_{1}=\\Omega_{2}(y_{1}-y_{2})+\\lambda_{1}$", "$\\alpha_{1}=\\lambda_{2}(h_{1}-h_{2})+\\Omega_{1}$", "$\\Omega_{1}=\\alpha_{2}(n_{1}-n_{2})+\\lambda_{1}$",
+  "Twelfth Law", "$\\alpha_{1}=\\frac{x_{1}(y_{2}-y_{1})-\\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}$", "$\\alpha_{1}=\\frac{g_{1}(h_{2}-h_{1})-\\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}$", "$\\Omega_{1}=\\frac{m_{1}(n_{2}-n_{1})-\\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}$",
+  "Thirteenth Law", "$\\lambda_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{2}$", "$\\Omega_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{2}$", "$\\lambda_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{2}$",
+  "Fourteenth Law", "$\\lambda_{1}=\\Omega_{1}(x_{1}-x_{2})+\\alpha_{2}$", "$\\Omega_{1}=\\lambda_{1}(g_{1}-g_{2})+\\alpha_{2}$", "$\\lambda_{1}=\\alpha_{1}(m_{1}-m_{2})+\\Omega_{2}$",
+  "Fifteenth Law", "$\\lambda_{1}=\\frac{\\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}$", "$\\Omega_{1}=\\frac{\\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}$", "$\\lambda_{1}=\\frac{\\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}$",
+  "Sixteenth Law", "$\\lambda_{1}=\\Omega_{2}(y_{2}-y_{1})+\\alpha_{1}$", "$\\Omega_{1}=\\lambda_{2}(h_{2}-h_{1})+\\alpha_{1}$", "$\\lambda_{1}=\\alpha_{2}(n_{2}-n_{1})+\\Omega_{1}$",
+  "Seventeenth Law", "$\\zeta=\\frac{x_{1}-\\alpha_{1}}{\\alpha_{1}-y_{1}};\\Omega_{1}=\\frac{y_{1}-\\alpha_{1}}{y_{1}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\alpha_{1}}{\\alpha_{1}-h_{1}};\\lambda_{1}=\\frac{h_{1}-\\alpha_{1}}{h_{1}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\Omega_{1}}{\\Omega_{1}-n_{1}};\\alpha_{1}=\\frac{n_{1}-\\Omega_{1}}{n_{1}-m_{1}}$",
+  "Eighteenth Law", "$\\Omega_{1}=\\frac{\\lambda_{2}-\\alpha_{1}}{x_{2}-x_{1}}=\\frac{\\alpha_{2}-\\lambda_{1}}{x_{2}-x_{1}}$", "$\\gamma_{1}=\\frac{\\Omega_{2}-\\alpha_{1}}{g_{2}-g_{1}}=\\frac{\\alpha_{2}-\\Omega_{1}}{g_{2}-g_{1}}$", "$\\alpha_{1}=\\frac{\\lambda_{2}-\\Omega_{1}}{m_{2}-m_{1}}=\\frac{\\Omega_{2}-\\lambda_{1}}{m_{2}-m_{1}}$",
+  "Nineteenth Law", "$\\zeta=\\frac{x_{1}-\\lambda_{1}}{\\lambda_{1}-y_{2}}; \\Omega_{1}=\\frac{y_{2}-\\lambda_{1}}{y_{2}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\Omega_{1}}{\\Omega_{1}-h_{2}}; \\lambda_{1}=\\frac{h_{2}-\\Omega_{1}}{h_{2}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\lambda_{1}}{\\lambda_{1}-n_{2}}; \\alpha_{1}=\\frac{n_{2}-\\lambda_{1}}{n_{2}-m_{1}}$",
+  "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
+)
+# Display the data.frame
+kable(laws_df, format = "markdown", escape = FALSE)
+```
+
+# Proportions and ratios
+
+```{r, echo=F}
+new_tbl <- data.frame(
+  V1 = c("North Ratio", "West Ratio", "Northwest Ratio", "Diagonal Aggregate", "Diagonal Complement", "West Aggregate", "East Aggregate", "North Aggregate", "South Aggregate"),
+  V2 = c("South Ratio", "East Ratio", "Northeast Ratio", "Diagonal Proportion", "Diagonal Inverse", "East to West Proportion", "West to East Proportion", "South to North Proportion", "North to South Proportion"),
+  V3 = c("North Complement", "West Complement", "Southeast Ratio", "1st Alpha Identity", "2nd Alpha Identity", "1st Lambda Identity", "2nd Lambda Identity", "1st Omega Identity", "2nd Omega Identity"),
+  V4 = c("South Complement", "East Complement", "Southwest Ratio", "Xi Identity", "Inverse Xi Identity", "Gamma Identity", "Inverse Gamma Identity", "Zeta Identity", "Inverse Zeta Identity"),
+  Equation1 = c("$x_{1} = \\frac{s}{s+t}$", "$g_{1} = \\frac{s}{s+v}$", "$m_{1} = \\frac{s}{s+u}$", "$\\alpha_{1} = \\frac{s+u}{(s+u)+(t+v)}$", "$\\alpha_{2} = \\frac{t+v}{(s+u)+(t+v)}$", "$\\lambda_{1} = \\frac{s+v}{(s+v)+(u+t)}$", "$\\lambda_{2} = \\frac{u+t}{(s+v)+(u+t)}$", "$\\Omega_{1} = \\frac{s+t}{(s+t)+(u+v)}$", "$\\Omega_{2} = \\frac{u+v}{(s+t)+(u+v)}$"),
+  Equation2 = c("$y_{1} = \\frac{u}{u+v}$", "$h_{1} = \\frac{u}{u+t}$", "$n_{1} = \\frac{t}{t+v}$", "$\\xi = \\frac{t+v}{s+u}$", "$\\xi^{-1} = \\frac{s+u}{t+v}$", "$\\gamma = \\frac{u+t}{s+v}$", "$\\gamma^{-1} = \\frac{s+v}{u+t}$", "$\\zeta = \\frac{u+v}{s+t}$", "$\\zeta^{-1} = \\frac{s+t}{u+v}$"),
+  Equation3 = c("$x_{2} = (1-x_{1}) = \\frac{t}{s+t}$", "$g_{2} = (1-g_{1}) = \\frac{v}{s+v}$", "$m_{2} = (1-m_{1}) = \\frac{u}{s+u}$", "$\\alpha_{1} = (\\xi+1)^{-1}$", "$\\alpha_{2} = (\\xi^{-1}+1)^{-1}$", "$\\lambda_{1} = (\\gamma+1)^{-1}$", "$\\lambda_{2} = (\\gamma^{-1}+1)^{-1}$", "$\\Omega_{1} = (\\zeta+1)^{-1}$", "$\\Omega_{2} = (\\zeta^{-1}+1)^{-1}$"),
+  Equation4 = c("$y_{2} = (1-y_{1}) = \\frac{v}{u+v}$", "$h_{2} = (1-h_{1}) = \\frac{t}{u+t}$", "$n_{2} = (1-n_{1}) = \\frac{v}{t+v}$", "$\\xi = \\frac{1-\\alpha_{1}}{\\alpha_{1}} = \\frac{\\alpha_{2}}{\\alpha_{1}}$", "$\\xi^{-1} = \\frac{1-\\alpha_{2}}{\\alpha_{2}} = \\frac{\\alpha_{1}}{\\alpha_{2}}$", "$\\gamma = \\frac{1-\\lambda_{1}}{\\lambda_{1}} = \\frac{\\lambda_{2}}{\\lambda_{1}}$", "$\\gamma^{-1} = \\frac{1-\\lambda_{2}}{\\lambda_{2}} = \\frac{\\lambda_{1}}{\\lambda_{2}}$", "$\\zeta = \\frac{1-\\Omega_{1}}{\\Omega_{1}} = \\frac{\\Omega_{2}}{\\Omega_{1}}$", "$\\zeta^{-1} = \\frac{1-\\Omega_{2}}{\\Omega_{2}} = \\frac{\\Omega_{1}}{\\Omega_{2}}$")
+)
+
+# Extract the columns
+V1 <- new_tbl$V1
+V2 <- new_tbl$V2
+V3 <- new_tbl$V3
+V4 <- new_tbl$V4
+Equation1 <- new_tbl$Equation1
+Equation2 <- new_tbl$Equation2
+Equation3 <- new_tbl$Equation3
+Equation4 <- new_tbl$Equation4
+
+# Combine the columns
+combined <- data.frame(
+  V1 = matrix(c(rbind(V1, Equation1)), ncol = 1),
+  V2 = matrix(c(rbind(V2, Equation2)), ncol = 1),
+  V3 = matrix(c(rbind(V3, Equation3)), ncol = 1),
+  V4 = matrix(c(rbind(V4, Equation4)), ncol = 1)
+)
+kable(combined, format = "markdown", escape = FALSE)
+```
+
+

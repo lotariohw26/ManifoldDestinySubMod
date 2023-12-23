@@ -3,6 +3,7 @@ project:
   output-dir: docs
   render:
     - "index.qmd"
+    - "laws.qmd"
 
 website:
   title: "Manifold Destiny"
@@ -10,12 +11,26 @@ website:
     left:
       - text: "Index"
         href: index.qmd
+      - text: "Presentation"
+      - text: "Data"
+        menu:
+          - text: "Manifold Destiny - or how to rig an election" 
+          - text: "Addendum 1: Arizona"
+          - text: "Addendum 2: Nevada"
       - text: R in the browser
         menu:
           - text: "REPL"
             href: https://webr.r-wasm.org/latest/
           - text: "Shiny"
             href: https://lotariohw26.github.io/MD_WASMS/r/examples/
+      - text: E-books
+        menu:
+          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
+            href: https://lotariohw26.github.io/GeneralElectionAnalysis
+      - text: Appendix
+        menu:
+          - text: "20 laws and 40 isometries"
+            href: laws.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
