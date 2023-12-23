@@ -15,6 +15,7 @@ website:
           - text: "REPL"
             href: https://webr.r-wasm.org/latest/
           - text: "Shiny"
+            href: https://lotariohw26.github.io/MD_WASMS/r/examples/
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
