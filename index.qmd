@@ -1,11 +1,21 @@
 ---
 title: ""
+output: github_document
+always_allow_html: true
+execute: 
+  cache: false
+filters:
+  - webr
 ---
 
 # Manifold Destiny - or how to rig an election
 **Based upon the ideas developed by Edward K. Solomon**
 
 ![](pngs/md.png)
+
+```{webr-r}
+webr::install("cli", repos = "https://lotariohw26.github.io/MD_WASMC")
+```
 
 ```{r, echo=F}
 knitr::knit_exit()

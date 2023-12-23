@@ -1,0 +1,726 @@
+---
+title: "Manifold Destiny - or how to rig an election"
+subtitle: "Based upon the ideas developed by Edward K. Solomon"
+abstract: "Abstract goes here"
+#format: 
+#  html:
+#    page-layout: article
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 2
+#    toc: true 
+#execute: 
+#  cache: false
+#filters:
+#  - webr
+#footer: <https://lotariohw26.github.io/ManifoldDestinyWASM/>
+---
+
+```{r}
+knitr::knit_exit()
+```
+
+```{r, echo=F, message=F, warning=F}
+library(ManifoldDestiny)
+library(RefManageR)
+library(huxtable)
+modlat <- eqpar$meql
+metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
+```
+
+# `r metad$toc$sec1$nmn`
+
+ Ed. Solomon
+
+> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
+
+## `r metad$toc$sec1$unm[1]`
+
+
+- Two candidates: A, B
+- County with three precincts: 1, 2, 3
+- Two modes of voting
+  - Number of ballots mode 1: S, T
+  - Number of ballots mode 2: U, V
+
+
+##
+
+```{r, echo=F, caption="Example 1"}
+## Tower 1
+ex1m <- as.matrix(cbind(S,T,U,V))
+towi <- as.data.frame(ex1m) %>% 
+  dplyr::mutate(EDVst=paste0(.[,1],"/",.[,2])) %>%
+  dplyr::mutate(MIVst_1=paste0(.[1,3],"/",.[1,4])) %>%
+  dplyr::mutate(MIVst_2=paste0(.[2,3],"/",.[2,4])) %>%
+  dplyr::mutate(MIVst_3=paste0(.[3,3],"/",.[3,4])) %>%
+  dplyr::select(5:8) %>%
+  t() %>%
+  data.frame() %>%
+  data.table::setnames(paste0("County_",1:6))
+
+towi[3:4,1] <- ""
+towi[4,2] <- ""
+lego_hux_nor_i <- hux(towi[,1:3]) 
+lego_hux_nor_i 
+```
+
+
+
+```{r, echo=F, caption="Example 2"}
+## Tower 2
+ex2m <- as.matrix(cbind(S,T,Up,Vp))
+towii <- as.data.frame(ex2m) %>% 
+  dplyr::mutate(EDVst=paste0(.[,1],"/",.[,2])) %>%
+  dplyr::mutate(MIVst_1=paste0(.[1,3],"/",.[1,4])) %>%
+  dplyr::mutate(MIVst_2=paste0(.[2,3],"/",.[2,4])) %>%
+  dplyr::mutate(MIVst_3=paste0(.[3,3],"/",.[3,4])) %>%
+  dplyr::select(5:8) %>%
+  t() %>%
+  data.frame() %>%
+  data.table::setnames(paste0("County_",1:6))
+towii[3:4,1] <- ""
+towii[4,2] <- ""
+lego_hux_nor_ii <- hux(towii[,1:3]) 
+lego_hux_nor_ii 
+```
+
+
+## `r metad$toc$sec1$unm[2]`
+
+```{r, echo=F}
+lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
+  set_background_color(1, 1:2, "black") %>% 
+  set_background_color(2, 1:2, "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_nor %>% set_caption("")
+```
+
+
+Parameters: ** $x$, $y$, $\zeta$, $\alpha$, $\lambda$ **
+\begin{equation*}
+x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$zeta_s[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lamda_s[1]`=`r modlat$lamda_s[2]`
+\end{equation*}
+
+##
+
+
+
+```{r, echo=F}
+ctone_sf <- 'Election results applying standard form on case I'
+stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,x,y,zeta,alpha,lamda)
+cou_tb <- c("Precinct","S","T","U","V","x","y",'$\\zeta$',"$\\alpha$","$\\lambda$")
+kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_sf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+Numerical calculation of candidate one total percentage
+- Precinct 1
+ - $\alpha=\frac{`r cx[1]`+`r cy[1]`\cdot `r czeta[1]`}{1+`r czeta[1]`}=`r calpha[1]`$
+- Precinct 2
+ - $\alpha=\frac{`r cx[2]`+`r cy[2]`\cdot `r czeta[2]`}{1+`r czeta[2]`}=`r calpha[2]`$
+- Precinct 3
+ - $\alpha=\frac{`r cx[3]`+`r cy[3]`\cdot `r czeta[3]`}{1+`r czeta[3]`}=`r calpha[3]`$
+
+## `r metad$toc$sec1$unm[3]`
+
+```{r, echo=F}
+lego_hux_imp <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
+  set_background_color(1:2, 1, "black") %>% 
+  set_background_color(1:2, 2, "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_imp %>% set_caption("")
+```
+
+Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
+\begin{equation*}
+g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]` 
+\end{equation*}
+\begin{equation*}
+\Gamma=`r modlat$Gamma_h[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_h[1]`=`r modlat$alpha_h[2]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
+\end{equation*}
+
+##
+
+```{r, echo=F}
+ctone_hf <- 'Election results applying hybrid form case I'
+stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,g,h,Gamma,alpha,Omega)
+kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_hf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+Numerical calculation of candidate one total percentage
+- Precinct 1
+ - $\alpha=\frac{`r cg[1]`+`r ch[1]`\cdot `r cGamma[1]`}{1+`r cGamma[1]`}=`r calpha[1]`$
+- Precinct 2
+ - $\alpha=\frac{`r cg[2]`+`r ch[2]`\cdot `r cGamma[2]`}{1+`r cGamma[2]`}=`r calpha[2]`$
+- Precinct 3
+ - $\alpha=\frac{`r cg[3]`+`r ch[3]`\cdot `r cGamma[3]`}{1+`r cGamma[3]`}=`r calpha[3]`$
+
+```{r, echo=F}
+ctone_hf <- 'Election results applying hybrid form case II'
+stfo_sel <- dplyr::select(pro_elc_ex2$sdfc[1:3,],P,S,T,U,V,g,h,Gamma,alpha,Omega)
+kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_hf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+
+
+## `r metad$toc$sec1$unm[4]`
+
+```{r, echo=F}
+lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
+  set_background_color(c(1),c(1), "black") %>% 
+  set_background_color(c(2),c(2), "black") %>% 
+  set_background_color(c(1),c(2), "grey") %>% 
+  set_background_color(c(2),c(1), "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_opo %>% set_caption("")
+```
+Parameters: $m$, $n$, $\xi$, $\lambda$, $\Omega$
+\begin{equation*}
+n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
+\end{equation*}
+\begin{equation*}
+\xi=`r modlat$xi_o[1]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_o[1]`=`r modlat$Omega_o[2]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lamda_o[1]`=`r modlat$lamda_o[2]`
+\end{equation*}
+
+##
+
+```{r, echo=F}
+ctone_of <- 'Election results applying opposition form'
+stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,n,m,xi,Omega, lamda)
+kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+## `r metad$toc$sec1$unm[5]`
+
+- **Step 1:** Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B
+- **Step 2:** Voting technology realized
+- **Step 3:** Registered voters determine whether to vote or not to vote 
+- **Step 4:** If voting, do this by either mode 1 or by mode 2.
+
+
+```{mermaid}
+  flowchart LR
+  A[Candidate A or B] --> R[A]
+  R --> RV[Vote]
+  RV --> RVE[Non-Mail]
+  RV --> RVM[Mail]
+  R --> RN[Not Vote]
+  DV --> DVE[Non-Mail]
+  DV --> DVM[Mail]
+  A --> D[B]
+  D --> DV[Vote]
+  D --> Dn[Not Vote]
+```
+
+##
+
+- Probability of assigning oneself to candidate A in precinct $i$
+  - $p_{w,i} \sim N(\alpha_i,\sigma^2_{w,i})$
+- Voting technology
+  - $z_i \sim U(0,1)$
+- Probability of not voting in precinct $i$
+  - Candidate A, $p_{nz,a,i}=(1-z_i)p_{n,a,i}\sim N(\alpha_{a,n},\sigma^2_{a,n})$ <br>
+  - Candidate B, $p_{nz,b,i}=(1-z_i)p_{n,b,i}\sim N(\alpha_{b,n},\sigma^2_{b,n})$
+- Probability of voting by mode 2 in precinct $i$
+  - Candidate A, $p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})$ 
+  - Candidate B, $p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})$ 
+- Probability of voting by mode 1 in precinct $i$
+  - Candidate A, $p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}$ 
+  - Candidate B, $p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}$ 
+
+Neutral-voting assumption:
+
+- Decission to vote or not to vote is independent of voting preferences:
+  - $p_{nz,a,i}=p_{nz,a,i}$ 
+- If voting, decission to vote by mode 1 or by mode 2 independent of voting preferences: 
+  - $p_{m2,a,i}=p_{m2,a,i}$ 
+
+Note: As we will investigate later, this condition might be needed in order to restore a rigged election to its original form. 
+
+## `r metad$toc$sec1$unm[6]`
+
+1. Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts $\Rightarrow$
+1. Changes to the likelihood of voting $\Rightarrow$ 
+1. Simplify so that changes in the likelihood of voting only impact Mode 2 $\Rightarrow$ 
+1. Higher $\zeta_i$ $\Rightarrow$
+1. Which changes the total election outcome through $\alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}$
+
+##
+
+The impact on the election outcome, however, would be small or close to non-existens if the conditions
+of the existance of a *trivial* Manifold occuranse related to normal form are not satisfied:
+
+- Proportion of mail-in-votes to election day vote is already high (Aggregate convergence lemma)
+  - Note: $\lim_{\zeta_i \rightarrow \infty} \alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}=y_i$
+- Correlation between $x$ and $y$ is very high (Twixt lemma)
+  - Note: If correlation is 1, we can set $x_i=\rho_s y_i$ so that $\alpha_i(y_i,\zeta_i)=\frac{\rho_s y_i+\zeta_i y_i}{\zeta_i+x_i}$
+- Low variance to $\zeta$ 
+  - Note: Invariance across precincts would imply that $\zeta_i=\zeta$, so that election outcome only determined by variations in two parameters: $\alpha_i(y_i,x_i)=\frac{x_i+\zeta y_i}{\zeta+x_i}$
+	
+If none of this three cases are satisfied, variation in $\zeta_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
+
+## `r metad$toc$sec1$unm[7]`
+
+1. Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts $\Rightarrow$ 
+1. Make changes to the likelihood of voting $\Rightarrow$ 
+1. Simplify so that changes in the likelihood of voting only impact mode 2 $\Rightarrow$ 
+1. Higher $\zeta_i$ $\Rightarrow$
+1. If new and earlier sample not representative of each other, higher $\Gamma_i$ $\Rightarrow$
+1. Which changes the total election outcome through $\alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+1}$
+
+##
+
+The impact on the election outcome, however, would be small or close to non-existens if the conditions
+of the existance of a *trivial* Manifold related to opposition form are not satisfied:
+
+- Proportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)
+  - Note: $\lim_{\Gamma_i \rightarrow \infty} \alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+g_i}=y_i$
+- Correlation between $g$ and $h$ is very high (Twixt lemma)
+  - Note: If correlation is 1, we can set $g_i=\rho_h h_i$ so that $\alpha_i(h_i,\Gamma_i)=\frac{\rho_h h_i+\Gamma_i h_i}{\Gamma_i+x_i}$
+- Low variance to $\Gamma_i$ 
+  - Note: Invariance across precincts would imply that $\Gamma_i=\Gamma$, so that election outcome only determined by variations in two parameters: $\alpha_i=\frac{g_i+\Gamma h_i}{h_i}$
+
+If none of this three cases are satisfied, variation in $\Gamma_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
+
+
+# `r metad$toc$sec2$nmn`
+
+## `r metad$toc$sec2$unm[1]`
+
+- We have identified three ways of counting
+  - *Standard form* ( $x$, $y$, $\zeta$, $\alpha$, $\lambda$ )
+  - *Hybrid form* ( $g$, $h$, $\alpha$, $\Gamma$, $\Omega$ )
+  - *Opposition form* ( $n$, $m$, $\xi$, $\Omega$, $\lambda$ )
+-  Each form can (throught its parametric tautologies) determine the 5 parameters that have been listed.
+  -  We are free to *predetermine* **3** of them
+  -  The remaining **2** must be *backsolved*, this based on information from the first three parameters.
+  -  Selecting **3** parameters from a set of **5** implies **10** different combinations
+
+## `r metad$toc$sec2$unm[2]`
+
+
+**20 laws and 40 isometris**
+
+```{r, echo=F}
+# Load necessary library
+library(tibble)
+
+# Create the data.frame
+laws_df <- tribble(
+  ~Law_Number, ~North_vs_South, ~West_vs_East, ~Diagonal_vs_Diagonal,
+  "First Law", "$x_{1}=\\alpha_{1}+\\zeta(\\alpha_{1}-y_{1})$", "$g_{1}=\\alpha_{1}+\\gamma(\\alpha_{1}-h_{1})$", "$m_{1}=\\Omega_{1}+\\xi(\\Omega_{1}-n_{1})$",
+  "Second Law", "$x_{1}=\\lambda_{1}+\\zeta(\\lambda_{1}-y_{2})$", "$g_{1}=\\Omega_{1}+\\gamma(\\Omega_{1}-h_{2})$", "$m_{1}=\\lambda_{1}+\\xi(\\lambda_{1}-n_{2})$",
+  "Third Law", "$x_{1}=\\frac{\\alpha_{1}y_{2}-\\lambda_{1}y_{1}}{(\\alpha_{1}-\\lambda_{1})-(y_{1}-y_{2})}$", "$g_{1}=\\frac{\\alpha_{1}h_{2}-\\Omega_{1}h_{1}}{(\\alpha_{1}-\\Omega_{1})-(h_{1}-h_{2})}$", "$m_{1}=\\frac{\\Omega_{1}n_{2}-\\lambda_{1}n_{1}}{(\\Omega_{1}-\\lambda_{1})-(n_{1}-n_{2})}$",
+  "Fourth Law", "$x_{1}=\\frac{\\lambda_{1}+\\alpha_{1}-\\Omega_{2}}{2\\Omega_{1}}$", "$g_{1}=\\frac{\\Omega_{1}+\\alpha_{1}-\\lambda_{2}}{2\\lambda_{1}}$", "$m_{1}=\\frac{\\lambda_{1}+\\Omega_{1}-\\alpha_{2}}{2\\alpha_{1}}$",
+  "Fifth Law", "$y_{1}=\\alpha_{1}-\\zeta^{-1}(\\alpha_{1}-x_{1})$", "$h_{1}=\\alpha_{1}-\\gamma^{-1}(\\alpha_{1}-g_{1})$", "$n_{1}=\\Omega_{1}-\\xi^{-1}(\\Omega_{1}-m_{1})$",
+  "Sixth Law", "$y_{1}=\\lambda_{2}-\\zeta^{-1}(\\lambda_{1}-x_{1})$", "$h_{1}=\\Omega_{2}-\\gamma^{-1}(\\Omega_{1}-g_{1})$", "$n_{1}=\\lambda_{2}-\\xi^{-1}(\\lambda_{1}-m_{1})$",
+  "Seventh Law", "$y_{1}=\\frac{x_{1}\\lambda_{2}-x_{2}\\alpha_{1}}{(\\lambda_{2}-\\alpha_{1})-(x_{2}-x_{1})}$", "$h_{1}=\\frac{g_{1}\\Omega_{2}-g_{2}\\alpha_{1}}{(\\Omega_{2}-\\alpha_{1})-(g_{2}-g_{1})}$", "$n_{1}=\\frac{m_{1}\\lambda_{2}-m_{2}\\Omega_{1}}{(\\lambda_{2}-\\Omega_{1})-(m_{2}-m_{1})}$",
+  "Eighth Law", "$y_{1}=\\frac{\\lambda_{2}+\\alpha_{1}-\\Omega_{1}}{2\\Omega_{2}}$", "$h_{1}=\\frac{\\Omega_{2}+\\alpha_{1}-\\lambda_{1}}{2\\lambda_{2}}$", "$n_{1}=\\frac{\\lambda_{2}+\\Omega_{1}-\\alpha_{1}}{2\\alpha_{2}}$",
+  "Ninth Law", "$\\alpha_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{1}$", "$\\alpha_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{1}$", "$\\Omega_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{1}$",
+  "Tenth Law", "$\\alpha_{1}=\\Omega_{1}(x_{1}-x_{2})+\\lambda_{2}$", "$\\alpha_{1}=\\lambda_{1}(g_{1}-g_{2})+\\Omega_{2}$", "$\\Omega_{1}=\\alpha_{1}(m_{1}-m_{2})+\\lambda_{2}$",
+  "Eleventh Law", "$\\alpha_{1}=\\Omega_{2}(y_{1}-y_{2})+\\lambda_{1}$", "$\\alpha_{1}=\\lambda_{2}(h_{1}-h_{2})+\\Omega_{1}$", "$\\Omega_{1}=\\alpha_{2}(n_{1}-n_{2})+\\lambda_{1}$",
+  "Twelfth Law", "$\\alpha_{1}=\\frac{x_{1}(y_{2}-y_{1})-\\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}$", "$\\alpha_{1}=\\frac{g_{1}(h_{2}-h_{1})-\\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}$", "$\\Omega_{1}=\\frac{m_{1}(n_{2}-n_{1})-\\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}$",
+  "Thirteenth Law", "$\\lambda_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{2}$", "$\\Omega_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{2}$", "$\\lambda_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{2}$",
+  "Fourteenth Law", "$\\lambda_{1}=\\Omega_{1}(x_{1}-x_{2})+\\alpha_{2}$", "$\\Omega_{1}=\\lambda_{1}(g_{1}-g_{2})+\\alpha_{2}$", "$\\lambda_{1}=\\alpha_{1}(m_{1}-m_{2})+\\Omega_{2}$",
+  "Fifteenth Law", "$\\lambda_{1}=\\frac{\\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}$", "$\\Omega_{1}=\\frac{\\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}$", "$\\lambda_{1}=\\frac{\\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}$",
+  "Sixteenth Law", "$\\lambda_{1}=\\Omega_{2}(y_{2}-y_{1})+\\alpha_{1}$", "$\\Omega_{1}=\\lambda_{2}(h_{2}-h_{1})+\\alpha_{1}$", "$\\lambda_{1}=\\alpha_{2}(n_{2}-n_{1})+\\Omega_{1}$",
+  "Seventeenth Law", "$\\zeta=\\frac{x_{1}-\\alpha_{1}}{\\alpha_{1}-y_{1}};\\Omega_{1}=\\frac{y_{1}-\\alpha_{1}}{y_{1}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\alpha_{1}}{\\alpha_{1}-h_{1}};\\lambda_{1}=\\frac{h_{1}-\\alpha_{1}}{h_{1}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\Omega_{1}}{\\Omega_{1}-n_{1}};\\alpha_{1}=\\frac{n_{1}-\\Omega_{1}}{n_{1}-m_{1}}$",
+  "Eighteenth Law", "$\\Omega_{1}=\\frac{\\lambda_{2}-\\alpha_{1}}{x_{2}-x_{1}}=\\frac{\\alpha_{2}-\\lambda_{1}}{x_{2}-x_{1}}$", "$\\gamma_{1}=\\frac{\\Omega_{2}-\\alpha_{1}}{g_{2}-g_{1}}=\\frac{\\alpha_{2}-\\Omega_{1}}{g_{2}-g_{1}}$", "$\\alpha_{1}=\\frac{\\lambda_{2}-\\Omega_{1}}{m_{2}-m_{1}}=\\frac{\\Omega_{2}-\\lambda_{1}}{m_{2}-m_{1}}$",
+  "Nineteenth Law", "$\\zeta=\\frac{x_{1}-\\lambda_{1}}{\\lambda_{1}-y_{2}}; \\Omega_{1}=\\frac{y_{2}-\\lambda_{1}}{y_{2}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\Omega_{1}}{\\Omega_{1}-h_{2}}; \\lambda_{1}=\\frac{h_{2}-\\Omega_{1}}{h_{2}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\lambda_{1}}{\\lambda_{1}-n_{2}}; \\alpha_{1}=\\frac{n_{2}-\\lambda_{1}}{n_{2}-m_{1}}$",
+  "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
+)
+# Display the data.frame
+kable(laws_df, format = "markdown", escape = FALSE)
+```
+
+##
+
+::: {.callout-caution collapse="true"}
+## Proportions
+
+```{r, echo=F}
+library(kableExtra)
+library(tibble)
+new_tbl <- data.frame(
+  V1 = c("North Ratio", "West Ratio", "Northwest Ratio", "Diagonal Aggregate", "Diagonal Complement", "West Aggregate", "East Aggregate", "North Aggregate", "South Aggregate"),
+  V2 = c("South Ratio", "East Ratio", "Northeast Ratio", "Diagonal Proportion", "Diagonal Inverse", "East to West Proportion", "West to East Proportion", "South to North Proportion", "North to South Proportion"),
+  V3 = c("North Complement", "West Complement", "Southeast Ratio", "1st Alpha Identity", "2nd Alpha Identity", "1st Lambda Identity", "2nd Lambda Identity", "1st Omega Identity", "2nd Omega Identity"),
+  V4 = c("South Complement", "East Complement", "Southwest Ratio", "Xi Identity", "Inverse Xi Identity", "Gamma Identity", "Inverse Gamma Identity", "Zeta Identity", "Inverse Zeta Identity"),
+  Equation1 = c("$x_{1} = \\frac{s}{s+t}$", "$g_{1} = \\frac{s}{s+v}$", "$m_{1} = \\frac{s}{s+u}$", "$\\alpha_{1} = \\frac{s+u}{(s+u)+(t+v)}$", "$\\alpha_{2} = \\frac{t+v}{(s+u)+(t+v)}$", "$\\lambda_{1} = \\frac{s+v}{(s+v)+(u+t)}$", "$\\lambda_{2} = \\frac{u+t}{(s+v)+(u+t)}$", "$\\Omega_{1} = \\frac{s+t}{(s+t)+(u+v)}$", "$\\Omega_{2} = \\frac{u+v}{(s+t)+(u+v)}$"),
+  Equation2 = c("$y_{1} = \\frac{u}{u+v}$", "$h_{1} = \\frac{u}{u+t}$", "$n_{1} = \\frac{t}{t+v}$", "$\\xi = \\frac{t+v}{s+u}$", "$\\xi^{-1} = \\frac{s+u}{t+v}$", "$\\gamma = \\frac{u+t}{s+v}$", "$\\gamma^{-1} = \\frac{s+v}{u+t}$", "$\\zeta = \\frac{u+v}{s+t}$", "$\\zeta^{-1} = \\frac{s+t}{u+v}$"),
+  Equation3 = c("$x_{2} = (1-x_{1}) = \\frac{t}{s+t}$", "$g_{2} = (1-g_{1}) = \\frac{v}{s+v}$", "$m_{2} = (1-m_{1}) = \\frac{u}{s+u}$", "$\\alpha_{1} = (\\xi+1)^{-1}$", "$\\alpha_{2} = (\\xi^{-1}+1)^{-1}$", "$\\lambda_{1} = (\\gamma+1)^{-1}$", "$\\lambda_{2} = (\\gamma^{-1}+1)^{-1}$", "$\\Omega_{1} = (\\zeta+1)^{-1}$", "$\\Omega_{2} = (\\zeta^{-1}+1)^{-1}$"),
+  Equation4 = c("$y_{2} = (1-y_{1}) = \\frac{v}{u+v}$", "$h_{2} = (1-h_{1}) = \\frac{t}{u+t}$", "$n_{2} = (1-n_{1}) = \\frac{v}{t+v}$", "$\\xi = \\frac{1-\\alpha_{1}}{\\alpha_{1}} = \\frac{\\alpha_{2}}{\\alpha_{1}}$", "$\\xi^{-1} = \\frac{1-\\alpha_{2}}{\\alpha_{2}} = \\frac{\\alpha_{1}}{\\alpha_{2}}$", "$\\gamma = \\frac{1-\\lambda_{1}}{\\lambda_{1}} = \\frac{\\lambda_{2}}{\\lambda_{1}}$", "$\\gamma^{-1} = \\frac{1-\\lambda_{2}}{\\lambda_{2}} = \\frac{\\lambda_{1}}{\\lambda_{2}}$", "$\\zeta = \\frac{1-\\Omega_{1}}{\\Omega_{1}} = \\frac{\\Omega_{2}}{\\Omega_{1}}$", "$\\zeta^{-1} = \\frac{1-\\Omega_{2}}{\\Omega_{2}} = \\frac{\\Omega_{1}}{\\Omega_{2}}$")
+)
+
+# Extract the columns
+V1 <- new_tbl$V1
+V2 <- new_tbl$V2
+V3 <- new_tbl$V3
+V4 <- new_tbl$V4
+Equation1 <- new_tbl$Equation1
+Equation2 <- new_tbl$Equation2
+Equation3 <- new_tbl$Equation3
+Equation4 <- new_tbl$Equation4
+
+# Combine the columns
+combined <- data.frame(
+  V1 = matrix(c(rbind(V1, Equation1)), ncol = 1),
+  V2 = matrix(c(rbind(V2, Equation2)), ncol = 1),
+  V3 = matrix(c(rbind(V3, Equation3)), ncol = 1),
+  V4 = matrix(c(rbind(V4, Equation4)), ncol = 1)
+)
+kable(combined, format = "markdown", escape = FALSE)
+```
+
+:::
+
+[@delfino2011analysis]
+
+## `r metad$toc$sec2$unm[3]`
+
+## `r metad$toc$sec2$unm[4]`
+
+## `r metad$toc$sec2$unm[5]`
+
+# `r metad$toc$sec3$nmn`
+
+## `r metad$toc$sec3$unm[1]`
+
+::: {.panel-tabset}
+
+### `r metad$tabsets[[1]]`
+
+```{r, echo=F}
+kableExtra::kbl(app_n_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+
+### `r metad$tabsets[[2]]`
+
+```{r, echo=F, out.width="60%"}
+app_n_out[['corxy']]
+```
+
+### `r metad$tabsets[[3]]`
+
+```{r, echo=F, out.width="60%"}
+app_n_out[['qunt']]
+```
+
+### `r metad$tabsets[[4]]`
+
+```{r, echo=F}
+app_n_out[['ro3d']]
+```
+
+### `r metad$tabsets[[5]]`
+
+```{r, echo=F, out.width="60%"}
+app_n_out[['regr']]
+```
+
+### `r metad$tabsets[[6]]`
+
+```{r, echo=F, out.width="60%"}
+app_n_out[['resp']]
+```
+
+:::
+
+
+## `r metad$toc$sec3$unm[2]`
+
+**Example 1: Normal form**
+
+::: {.panel-tabset}
+
+### `r metad$tabsets[[1]]`
+
+```{r, echo=F}
+kableExtra::kbl(app_ex1_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+
+### `r metad$tabsets[[2]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex1_out[['corxy']]
+```
+
+### `r metad$tabsets[[3]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex1_out[['qunt']]
+```
+
+### `r metad$tabsets[[4]]`
+
+```{r, echo=F}
+app_ex1_out[['ro3d']]
+```
+
+### `r metad$tabsets[[5]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex1_out[['regr']]
+```
+
+### `r metad$tabsets[[6]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex1_out[['resp']]
+```
+
+:::
+
+
+##
+
+**Example 2: applying hybrid form**
+
+::: {.panel-tabset}
+
+### `r metad$tabsets[[1]]`
+
+```{r, echo=F}
+kableExtra::kbl(app_ex2_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+
+### `r metad$tabsets[[2]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex2_out[['corxy']]
+```
+
+### `r metad$tabsets[[3]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex2_out[['qunt']]
+```
+
+### `r metad$tabsets[[4]]`
+
+```{r, echo=F}
+app_ex2_out[['ro3d']]
+```
+
+### `r metad$tabsets[[5]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex2_out[['regr']]
+```
+
+### `r metad$tabsets[[6]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex2_out[['resp']]
+```
+
+:::
+
+
+
+##
+
+**Example 3: applying opposition form**
+
+::: {.panel-tabset}
+
+### `r metad$tabsets[[1]]`
+
+```{r, echo=F}
+kableExtra::kbl(app_ex3_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+
+### `r metad$tabsets[[2]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex3_out[['corxy']]
+```
+
+### `r metad$tabsets[[3]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex3_out[['qunt']]
+```
+
+### `r metad$tabsets[[4]]`
+
+```{r, echo=F}
+app_ex3_out[['ro3d']]
+```
+
+### `r metad$tabsets[[5]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex3_out[['regr']]
+```
+
+### `r metad$tabsets[[6]]`
+
+```{r, echo=F, out.width="60%"}
+app_ex3_out[['resp']]
+```
+
+:::
+
+
+# `r metad$toc$sec4$nmn` {#litrev}
+
+
+```{r, echo=FALSE, out.width="20%", fig.cap=""}
+p1 <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/ss.png')
+knitr::include_graphics(c(p1))
+```
+
+`r #Citet(bib, "delfino2011analysis")`
+
+> Abstract: On August 15th, **2004**, Venezuelans had the opportunity to vote
+in a Presidential Recall Referendum **to decide whether or not President Hugo
+Chávez should be removed from office.** **The process was largely computer-
+ized using a touch-screen system.** In general the ballots were not manually
+counted. The significance of the high linear correlation (0.99) between the
+number of requesting signatures for the recall petition and the number of op-
+position votes in computerized centers is analyzed. The same-day audit was
+found to be not only ineffective but a source of suspicion... 
+
+::: aside
+[Link to Youtube-video](https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s)
+:::
+
+##
+
+- Venezuela referendum to recall President Hugo Chávez (2004)
+	- Mode 1: Computerized Voting Centers
+	- Mode 2: Manuel Voting Centers
+
+> HYPOTHESIS: **In computerized centers**, official **results were forced to follow a linear relationship** with respect to the number of signatures.
+
+```{r, echo=FALSE, out.width="85%", fig.cap=""}
+p3 <- paste0(rprojroot::find_rstudio_root_file(),'pngs/manifold.png')
+knitr::include_graphics(c(p3))
+```
+
+# `r metad$toc$sec5$nmn` {#proced}
+
+# `r metad$toc$sec5$unm[1]` 
+
+1. Check whether *trivial* Manifold occuranse related to (1) normal form, (2) hybrid form, or (3) opposition formare satisfied.
+1. If not, perform 3d Manifold analysis on all 10 different parameter combinations for all three forms of voting.
+1. For at least one of the suspicion cases, estimate the Manifold equation using (ordinary, complex or quaternionic) least squares estimation
+1. Check for normality of the estimated residual for the Manifold model.
+
+If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
+
+# `r metad$toc$sec6$nmn`
+
+```{r, echo=FALSE, results='asis',warning=F}
+params <- list(name="1")
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+```{r, echo=FALSE, results='asis',warning=F}
+params <- list(name="2")
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+```{r, echo=FALSE, results='asis',warning=F}
+params <- list(name="2")
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+```{r, echo=FALSE, results='asis',warning=F}
+params <- list(name="2")
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+```{r, echo=FALSE, results='asis',warning=F}
+params <- list(name="2")
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+
+# `r metad$toc$sec7$nmn`
+
+- At the heart of the difference between a fair and rigged election is the issue of causation
+  - Fair election: Aggregate Percentage of a Candidate **cannot** precede the Election Day and the Mail-in Percentages of that Candidate
+  - Rigged election: Aggregate Percentage of a Candidate **could** precede the Election Day and the Mail-in Percentages of that Candidate
+
+- If the conditions related to the the existance of a *trivial* Manifold occuranse to either normal form, hybrid form nor opposition form are not satisfied, this would imply
+	- 1<sup>st</sup> The total election outcome will be determined by *three* parameters (no manifold in 3d space). 
+	- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would have an impact on $\alpha_i$.
+
+##
+
+- Condition on that $R^2$ falls within the critical region.
+  - Normal form
+```{r, echo=F, out.width="40%", fig.cap=""}
+pr2n <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/r2n.png')
+knitr::include_graphics(c(pr2n))
+```
+
+ - Hybrid form
+```{r, echo=F, out.width="40%", fig.cap=""}
+pr2h <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/r2h.png')
+knitr::include_graphics(c(pr2h))
+```
+
+
+
+- Our four applications
+
+```{r, echo=F, warning=F, message=F}
+kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+# `r metad$toc$sec8$nmn`
+
+::: {#refs}
+:::
+
+```{r, eval=F}
+knitr::knit_exit()
+```
+
+
+

@@ -1,8 +1,9 @@
-project:
+froject:
   type: website
   output-dir: docs
   render:
     - "index.qmd"
+    - "presentation.qmd"
     - "laws.qmd"
 
 website:
@@ -12,9 +13,9 @@ website:
       - text: "Index"
         href: index.qmd
       - text: "Presentation"
-      - text: "Data"
         menu:
           - text: "Manifold Destiny - or how to rig an election" 
+            href: "presentation.qmd"
           - text: "Addendum 1: Arizona"
           - text: "Addendum 2: Nevada"
       - text: R in the browser
@@ -31,6 +32,8 @@ website:
         menu:
           - text: "20 laws and 40 isometries"
             href: laws.qmd
+          - text: "Tabsets from different simulations"
+            #href: tabsets.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
