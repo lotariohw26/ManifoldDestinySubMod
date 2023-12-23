@@ -1,0 +1,12 @@
+[submodule "MD_WASMS"]
+	path = MD_WASMS
+	url = https://github.com/lotariohw26/MD_WASMS.git
+[submodule "MD_WASMD"]
+	path = MD_WASMD
+	url = https://github.com/lotariohw26/MD_WASMD.git
+[submodule "MD_WASMP"]
+	path = MD_WASMP
+	url = https://github.com/lotariohw26/MD_WASMP.git
+[submodule "MD_WASMC"]
+	path = MD_WASMC
+	url = https://github.com/lotariohw26/MD_WASMC.git
