@@ -1,0 +1,133 @@
+sn <- 6
+appsel <- c(1,2,3,4,5,6)
+idv <- c(ManifoldDestiny::recnav[appsel],paste0("googlsheet_",seq(1,sn)))
+source(paste0(rprojroot::find_rstudio_root_file(),'/inst/www/script/applications.R'))
+################################################################################################################################################################
+ui <- fluidPage(
+  titlePanel("Rigged election results analyzer"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "app_select", label = "Select an election from the library",
+              choices = idv,
+              selected = "biden_trump_nevada_2020"),
+      selectInput("form", "Rigged:",
+                  choices = c("Normal Form" = "1",
+                              "Hybrid Form" = "2",
+                              "Opposition Form" = "3"), selected = "2"),
+      textInput("purge", "Purge criteria:",value="0"),
+      textInput("meqf", "Manifold object(s):",
+                value = "alpha=k0+k1*g+k2*h"),
+      textInput("solvf", "Solve for:",
+                value = "g"),
+      br(),
+      h4("Rotation Settings (Euler)"),
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+      sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+      sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+      sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
+      h4("Suggested solution:"),
+      textOutput("sidebarText")  # Output element for dynamic text
+    ),
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Descriptive", verbatimTextOutput(outputId = "table_dsc")),
+        tabPanel("2D Scatter Plots", plotOutput(outputId = "plot_xy")),
+        tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
+        tabPanel("Bow Plot", plotOutput(outputId = "plot_bow")),
+        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d")),
+        tabPanel("3D scatter plots", htmlOutput(outputId = "plot_3ds")),
+        tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
+        tabPanel("Residuals", plotOutput(outputId = "plot_res")),
+        tabPanel("Comparison", verbatimTextOutput(outputId = "print_com")),
+        tabPanel("Metadata", verbatimTextOutput(outputId = "meta_dsc"))
+      )
+    )
+  )
+)
+server <- function(input, output, session) {
+  observeEvent(input$form, {
+    # Update the default value of the "Polynomial Equation(s)" text input
+    if (input$form == "1") {
+      updateTextInput(session, "meqf", value = "alpha=k0+k1*x+k2*y")
+      updateTextInput(session, "solvf", value = "y")
+    } else if (input$form == "2") {
+      updateTextInput(session, "meqf", value = "alpha=k0+k1*g+k2*h")
+      updateTextInput(session, "solvf", value = "g")
+    } else if (input$form == "3") {
+      updateTextInput(session, "meqf", value = "alpha=k0+k1*m+k2*n")
+      updateTextInput(session, "solvf", value = "m")
+    }
+  })  
+  cformo <- reactive({
+  #prg <- rep(0,4); rparv <- c(theta=0,phi=0,rho=0); frm <- 2; eqregpar<-c('alpha=k0+k1*g+k2*h'); sf <- 'g' 
+  vn <- ManifoldDestiny::recnav[appsel]
+  vals <- lapply(seq(1,length(vn)), function(x) get(paste0("app_",x,"_bal")))
+  names(vals) <- vn
+  if (input$app_select %in% idv[seq(1,length(idv)-sn)])
+  {
+    seldata <- do.call(switch, c(list(input$app_select), vals))  
+  } else {
+  gsn <- input$app_select
+  gnr <- as.numeric(substr(gsn,12,13))
+  googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+  seldata <- recoudatr(list(recn='Interactive',
+  sht=c(ss='https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0',
+  st=gnr,rng="A:K"),
+  cln=NULL))
+  }
+  prgv <- strsplit(as.character(input$purge),";")[[1]]
+  prgl <- list(sfilter=rep(as.numeric(prgv[1]),4),blup=eval(parse(text=prgv[2])))[seq(1,length(prgv))]
+  rparv <- c(theta=input$theta*pi/180,phi=input$phi*pi/180,rho=input$rho*pi/180)
+  frm <- as.numeric(input$form) 
+  eqregpar <- input$meqf 
+  sf <- input$solvf
+  ##### Intermediate
+  param <- ManifoldDestiny::stickers[['parameters']][[frm]]
+  chr <- unlist(strsplit(eqregpar, ""))
+  ltr <- chr[grepl("[a-z]", chr)]
+  unique_ltr <- unique(ltr)
+  # Selreport
+  sugsol <- c(eqregpar,solvf=sf,root=1)
+  #browser()
+  return(selreport(seldata,prgl,frm,rparv,sugsol))
+  })
+    observe(print(cformo()[[1]]$desms))
+  output$table_dsc <- renderPrint({
+   #browser()
+    print(cformo()[[1]]$desms)
+  })
+  output$plot_q <- renderPlot({
+    cformo()[[1]]$pl_2dsort[[1]]
+  })
+  output$plot_bow <- renderPlot({
+    cformo()[[5]]$pl_2dsort[[1]]
+  })
+  output$plot_xy <- renderPlot({
+    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+  })
+  output$plot_3d <- renderPlotly({
+    cformo()[[1]]$rotplotly[[1]]
+  })
+  output$plot_3ds <- renderUI({
+    cformo()[[1]]$all_pl_3d_mani[[1]]
+  })
+  output$print_sum <- renderPrint({
+    list(summary(cformo()[[3]]$regsum[[1]]),
+	 summary(cformo()[[2]]$regsum[[1]]))
+  })
+  output$plot_res <- renderPlot({
+    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
+    plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
+    plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
+    cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
+  })
+  output$print_com <- renderPrint({
+    print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
+  })
+  output$sidebarText <- renderText({
+	cformo()[[4]]$sug_sol
+  })
+}
+runApp(shinyApp(ui = ui, server = server), port = 8100)
+

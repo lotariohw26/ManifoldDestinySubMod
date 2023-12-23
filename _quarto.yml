@@ -5,11 +5,6 @@ project:
     - "index.qmd"
     - "presentation.qmd"
     - "laws.qmd"
-    - "!*.Rmd"
-    - "!*.md"
-    - "!*.md"
-    - "!script*"
-    - "!inst*"
 
 website:
   title: "Manifold Destiny"

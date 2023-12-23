@@ -14,9 +14,18 @@ filters:
 ![](pngs/md.png)
 
 ```{webr-r}
-webr::install("cli", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+```
+
+```{webr-r}
+library(ManifoldDestinyWASMP)
+ls(package:ManifoldDestinyWASMP)
+```
+
+```{webr-r}
+library(ManifoldDestinyWASMD)
+ls(package:ManifoldDestinyWASMD)
 ```
 
 ```{r, echo=F}
