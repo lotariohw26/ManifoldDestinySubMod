@@ -19,5 +19,33 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "knitr::knit_exit()"
+  },
+  {
+    "objectID": "tabsets.html",
+    "href": "tabsets.html",
+    "title": "Tabsets",
+    "section": "",
+    "text": "Tabcsets\n\nknitr::knit_exit()"
+  },
+  {
+    "objectID": "presentation.html#start-here",
+    "href": "presentation.html#start-here",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Start here",
+    "text": "Start here\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "presentation.html#more",
+    "href": "presentation.html#more",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "More",
+    "text": "More"
+  },
+  {
+    "objectID": "man_bib.html",
+    "href": "man_bib.html",
+    "title": "References",
+    "section": "",
+    "text": "Edward, S. (2020). Clark and Washoe Precinct Analysis. https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit.\nEdward, S. (2022b). Anderson Ruling Rebuttal . https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu.\nEdward, S. (2022a). Clark and Washoe Counties, 2020 and 2022 Elections. https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct.\nEdward, S. (2023a). Anderson Ruling Rebuttal. https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link.\nEdward, S. (2023b). Least squares regression for 3D data. https://bard.google.com/share/ee16dfd2d48a."
   }
 ]

@@ -17,26 +17,40 @@ filters:
 footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
-```{r, eval=T}
-knitr::knit_exit()
+## Start here 
+
+```{webr-r}
+2+2
 ```
+
+
+## More
 
 ```{r, echo=F, message=F, warning=F}
 library(ManifoldDestiny)
 library(RefManageR)
 library(huxtable)
-modlat <- eqpar$meql
-metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+#modlat <- eqpar$meql
+#metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+#mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
 ```
 
-# `r metad$toc$sec1$nmn`
+# `r #metad$toc$sec1$nmn`
 
  Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
+```{webr-r}
+2+2
+```
+
+
+```{r, eval=T}
+knitr::knit_exit()
+```
 
 
 ## `r metad$toc$sec1$unm[1]`

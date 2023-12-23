@@ -1,0 +1,150 @@
+---
+title: "Tabsets"
+format: 
+  html:
+    page-layout: article
+#filters:
+#  - webr
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
+#    footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+#execute: 
+#  cache: false
+bibliography: inst/references/man_bib.bib
+---
+
+Tabcsets
+
+```{r}
+knitr::knit_exit()
+```
+
+
+```{r, echo=F, message=F, warning=F}
+library(ManifoldDestiny)
+library(RefManageR)
+library(huxtable)
+library(Hyperinflation)
+mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/applications.R'))
+```
+
+
+
+::: {.callout-caution collapse="true"}
+## `r md$tabhead[1]`
+
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_n_out
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+:::
+
+::: {.callout-caution collapse="true"}
+## `r md$tabhead[2]`
+
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_ex1_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+:::
+
+::: {.callout-caution collapse="true"}
+## `r md$tabhead[3]`
+
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_ex2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+:::
+
+::: {.callout-caution collapse="true"}
+## `r md$tabhead[4]`
+
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_ex3_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+```
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Application 0 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_0_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+
+::: {.callout-caution collapse="true"}
+## Application 1 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_1_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+
+::: {.callout-caution collapse="true"}
+## Application 2 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+::: {.callout-caution collapse="true"}
+## Application 3 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+::: {.callout-caution collapse="true"}
+## Application 4 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+::: {.callout-caution collapse="true"}
+## Application 5 
+```{r, echo=FALSE, results='asis',warning=F}
+app_a_out <- app_2_out 
+app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+text <- readLines(app1_fil)
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+
+
+[@delfino2011analysis]
+
+## References
+
+::: {#refs}
+:::
+

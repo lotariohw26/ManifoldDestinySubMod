@@ -1,0 +1,23 @@
+---
+title: "References"
+output: html_document
+# inst/references/man_bib.bib
+---
+
+
+```{r setup, include=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
+tes <- paste0(rprojroot::find_rstudio_root_file(),'/man_bib.bib')	
+bib <- RefManageR::ReadBib(tes)
+RefManageR::NoCite(bib)
+```
+
+```{r results = "asis", echo = FALSE}
+RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
+# inst/references/man_bib.bib
+```
+
+
+
+

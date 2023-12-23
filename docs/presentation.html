@@ -318,8 +318,24 @@
       margin-right: 0; 
     }
   </style>
+  
+  
+  
+  
+  
 </head>
 <body class="quarto-light">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/loader.js"></script>
+<script type="module" id="qwebr-monaco-editor-init">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
+    }
+  });
+</script>
+
   <div class="reveal">
     <div class="slides">
 
@@ -334,12 +350,62 @@
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li></li>
+<li><a href="#/start-here" id="/toc-start-here">Start here</a></li>
+<li><a href="#/more" id="/toc-more">More</a></li>
+<li><a href="#/section" id="/toc-section"></a></li>
 </ul>
 </nav>
 </section>
-<section class="slide level2">
+<section id="start-here" class="slide level2">
+<h2>Start here</h2>
+<div id="qwebr-insertion-location-1"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-1");
 
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    1
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `2+2`, 
+  1);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="more" class="slide level2">
+<h2>More</h2>
+</section>
+<section id="section" class="title-slide slide level1 center">
+<h1></h1>
+<p>Ed. Solomon</p>
+<blockquote>
+<p>“At the very core of this article lay the assumption of Causality, that the <strong>Effect cannot precede the Cause</strong>; likewise, the <strong>Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate</strong>.</p>
+</blockquote>
+<div id="qwebr-insertion-location-2"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-2");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    2
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `2+2`, 
+  2);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 <div class="footer footer-default">
 <p><a href="https://lotariohw26.github.io/ManifoldDestiny/" class="uri">https://lotariohw26.github.io/ManifoldDestiny/</a></p>
