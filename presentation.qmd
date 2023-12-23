@@ -1,19 +1,16 @@
 ---
 title: "Manifold Destiny - or how to rig an election"
 subtitle: "Based upon the ideas developed by Edward K. Solomon"
-abstract: "Abstract goes here"
-#format: 
-#  html:
-#    page-layout: article
 format:
   revealjs: 
     smaller: true
-    toc-depth: 2
+    toc-depth: 1
     toc: true 
-execute: 
-  cache: false
+webr: 
+  show-startup-message: true    # Disable displaying status of webR initialization
+  packages: ['dplyr'] # Install R packages on document open
 filters:
-  - webr
+- webr 
 footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
