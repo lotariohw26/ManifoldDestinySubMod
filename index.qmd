@@ -1,0 +1,33 @@
+---
+title: ""
+---
+
+# Manifold Destiny - or how to rig an election
+**Based upon the ideas developed by Edward K. Solomon**
+
+![](pngs/md.png)
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+
+[From Bard:](https://g.co/bard/share/37bfadf733c5)
+
+Published July 22, 2023 at 05:37 AM
+
+> The first problem is that the proportion of votes cast by mail (w) is nearly constant across all precincts. This is not what we would expect to see in a fair election, where the proportion of votes cast by mail would vary depending on the demographics of the precinct. For example, we would expect to see a higher proportion of votes cast by mail in precincts with a higher population of elderly people.
+
+> The second problem is that we can calculate D knowing only K and A. This is also not possible in a fair election, as D should be determined by the number of ballots cast by mail, which is not known until after all ballots have been cast.
+
+> The third problem is that n decreases rapidly over the quantiles of z, meaning that Democrats are more likely to cast their ballots by mail as Republicans perform better overall. This is not what we would expect to see in a fair election, as we would expect the proportion of Democrats and Republicans who vote by mail to be relatively constant.
+
+> The fourth problem is that the difference between x and y diverges rapidly over the quantiles of z, meaning that as Republican do better in the early vote, the more they suffer in the mail-in vote. This is also not what we would expect to see in a fair election, as we would expect the two types of votes to be relatively correlated.
+
+
+```{webr-r}
+webr::install("ManifoldDestinyWASM", repos = "https://lotariohw26.github.io/ManifoldDestinyWASM/repo")
+library(ManifoldDestinyWASM)
+ls(package:ManifoldDestinyWASM)
+```
+
