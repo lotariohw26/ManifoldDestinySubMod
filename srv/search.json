@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "reveal.html#getting-up",
+    "href": "reveal.html#getting-up",
+    "title": "Habits",
+    "section": "Getting up",
+    "text": "Getting up\n\nTurn off alarm\nGet out of bed"
+  },
+  {
+    "objectID": "reveal.html#breakfast",
+    "href": "reveal.html#breakfast",
+    "title": "Habits",
+    "section": "Breakfast",
+    "text": "Breakfast\n\nEat eggs\nDrink coffee"
+  },
+  {
+    "objectID": "reveal.html#dinner",
+    "href": "reveal.html#dinner",
+    "title": "Habits",
+    "section": "Dinner",
+    "text": "Dinner\n\nEat spaghetti\nDrink wine"
+  },
+  {
+    "objectID": "reveal.html#going-to-sleep",
+    "href": "reveal.html#going-to-sleep",
+    "title": "Habits",
+    "section": "Going to sleep",
+    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Manifold Destiny",
+    "section": "",
+    "text": "Presentation\n\n\nAddendum 1: Arizona\n\n\nAddendum 2: Bowshock analysis\n\n\nApplication 1: R2 simulator\n\n\nApplication 2: Simulator for the rigging of a natural election\n\n\nApplication 3: Rigged election results analyzer\n\n\nApplication 4: Restoration of election results\n\n\nAppendix: Maricopa 2022 counting process (GIF-images)\n\n\nE-book: Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada\nLast time updated: 2023-09-01\n\nimport sympy\n2+2\n\n4"
+  },
+  {
+    "objectID": "abc.html#getting-up",
+    "href": "abc.html#getting-up",
+    "title": "Habits",
+    "section": "Getting up",
+    "text": "Getting up\n\nTurn off alarm\nGet out of bed"
+  },
+  {
+    "objectID": "abc.html#going-to-sleep",
+    "href": "abc.html#going-to-sleep",
+    "title": "Habits",
+    "section": "Going to sleep",
+    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "presentation.html#setting-up-the-election-system",
+    "href": "presentation.html#setting-up-the-election-system",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Setting up the election system",
+    "text": "Setting up the election system\n\nTwo candidates: A, B\nCounty with three precincts: 1, 2, 3\nTwo modes of voting\n\nNumber of ballots mode 1: S, T\nNumber of ballots mode 2: U, V"
+  }
+]

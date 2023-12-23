@@ -1,0 +1,13 @@
+home:
+  sidebar: FALSE
+navbar:
+  title: "Manifold Destiny"
+  type: default
+  left:
+    - text: ""
+    - text: ""
+authors:
+  footer:
+    roles: []
+    text: ""
+

@@ -1,0 +1,195 @@
+---
+title: "Addendum"
+subtitle: "Arizona General Election 2022"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "abc.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#output:
+#  html_document:
+#    toc: true
+#    toc_depth: 5
+---
+
+```{r, echo=F, warning=F, message=F}
+library(ManifoldDestiny)
+library(RefManageR)
+library(huxtable)
+library(plotly)
+xaringanExtra::use_editable(expires = 1)
+xaringanExtra::use_tile_view()
+xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+xaringanExtra::use_webcam()
+xaringanExtra::use_panelset()
+modlat <- eqpar$meql
+labs <- stickers[['parameters']]
+abs_p <- rprojroot::find_rstudio_root_file()
+#source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/addendum_az.R'))
+```
+
+```{r, eval=F, echo=F, message=F, warning=F}
+pre_fil <- paste0(rprojroot::find_rstudio_root_file(),'/inst/www/addendum/Addendum_az.Rmd')
+xaringan::inf_mr(pre_fil)
+#rmarkdown::render(pre_fil) 
+```
+
+```{r}
+knitr::knit_exit()
+```
+
+class: inverse, center, middle
+
+# Overview
+
+```{r, echo=FALSE, out.width="80%", fig.cap=""}
+pa <- paste0(rprojroot::find_rstudio_root_file(),'/inst/addendum/pngs/ALEXANDER_chart-of-Rs-voting-for-Hobbs.jpg')
+knitr::include_graphics(c(pa))
+```
+
+---
+
+class: inverse, center, middle
+
+# Maricopa county
+
+---
+
+## [Application 1:`r paste0(unlist(ManifoldDestiny::cap_add_mar[1])[1:3])`]()
+
+- Election system:
+  - General election 2022
+  - Modes of voting: EDV, (used) MiV (used), EV (used)
+
+- $H_0:$ Normal election 
+  - $y_i(\alpha_i,x_i.\zeta_i)$
+  - Variation in $\zeta_i$ causes changes to $\alpha_i$
+
+- $H_1:$ Rigged election applying opposition form
+  - $y_i(\alpha_i,x_i)=M(x_i,\alpha_i)+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+  - $\zeta_i$ (and as a corollary $\Omega$) invariant to $\alpha_i$
+
+---
+
+.panelset[
+.panel[.panel-name[Descriptive]
+```{r, echo=F}
+format(app_ma_sen_srp[[1]][,1:6],digits=10)
+format(app_ma_sen_srp[[1]][,7:18],digits=4)
+```
+]
+.panel[.panel-name[2d plots]
+```{r, echo=F}
+app_ma_sen_srp[[2]]
+```
+]
+.panel[.panel-name[3d plot]
+```{r, echo=F}
+app_ma_sen_srp[[3]]
+```
+]
+.panel[.panel-name[Estimation results]
+```{r, echo=F}
+app_ma_sen_srp[[4]][2]
+```
+]
+.panel[.panel-name[Residuals]
+```{r, echo=F}
+app_ma_sen_srp[[5]]
+```
+]]
+
+---
+
+
+```{r, echo=F, out.width="80%", fig.cap=""}
+td
+```
+
+---
+
+![](ggplots/prec/race_1_snap)
+
+---
+
+---
+
+![](ggplots/prec/race_2_snap)
+
+---
+
+
+```{r, echo=F, out.width="80%", fig.cap=""}
+kableExtra::kbl(snap_mar$rpoltab,col.names=c("Race","Snap","Polynomial","Integral","R2")) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=12)
+```
+
+---
+
+class: inverse, center, middle
+
+# Cohise county
+
+---
+
+## [Application 2:`r paste0(unlist(ManifoldDestiny::cap_add_coh[2][1:3])[1:2])`]()
+
+- Election system
+  - General election 2022
+  - Modes of voting: EDV, (used) MiV (used), EV (used)
+
+- $H_0:$ Normal election 
+  - $y_i(\alpha_i,x_i.\zeta_i)$
+  - Variation in $\zeta_i$ causes changes to $\alpha_i$
+
+- $H_1:$ Rigged election applying opposition form
+  - $y_i(\alpha_i,x_i)=M(x_i,\alpha_i)+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+  - $\zeta_i$ (and as a corollary $\Omega$) invariant to $\alpha_i$
+
+---
+
+
+.panelset[
+.panel[.panel-name[Descriptive]
+```{r, echo=F}
+format(app_co_sen_srp[[1]][,1:6],digits=10)
+format(app_co_sen_srp[[1]][,7:18],digits=4)
+```
+]
+.panel[.panel-name[2d plots]
+```{r, echo=F}
+app_co_sen_srp[[2]]
+```
+]
+.panel[.panel-name[3d plot]
+```{r, echo=F}
+app_co_sen_srp[[3]]
+```
+]
+.panel[.panel-name[Estimation results]
+```{r, echo=F}
+app_co_sen_srp[[4]][2]
+```
+]
+.panel[.panel-name[Residuals]
+```{r, echo=F}
+app_co_sen_srp[[5]]
+```
+]]
+
+---
+
+```{r, echo=F, out.width="80%", fig.cap=""}
+plo_sta_all
+```
+
+---
+
+```{r, echo=F, out.width="80%", fig.cap=""}
+kableExtra::kbl(sna_sta_all$rpoltab,col.names=c("Race","Snap","Polynomial","Integral","R2")) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=12)
+```
+

@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "index.qmd"
+
+website:
+  title: "Manifold Destiny"
+  navbar:
+    left:
+      - text: "Index"
+        href: index.qmd
+      - text: R in the browser
+        menu:
+          - text: "REPL"
+            href: https://webr.r-wasm.org/latest/
+          - text: "Shiny"
+  repo-url: https://github.com/lotariohw26/ManifoldDestiny
+  site-url: https://lotariohw26.github.io/ManifoldDestiny/
+  reader-mode: false
+  repo-actions: [edit]
+  page-footer: 
+     left: "" 
+     right: 
+       - icon: github
+         href: https://github.com/lotariohw26/ManifoldDestiny
+format:
+  html:
+    theme: zephyr
+    toc: true
+
+
