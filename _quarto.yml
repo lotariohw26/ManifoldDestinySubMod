@@ -20,8 +20,6 @@ website:
             href: "presentation.qmd"
           - text: "Addendum 1: Arizona"
           - text: "Addendum 2: Nevada"
-          - text: "Tabsets from different simulations"
-            href: tabsets.qmd
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
@@ -45,6 +43,8 @@ website:
         menu:
           - text: "20 laws and 40 isometries"
             href: laws.qmd
+          - text: "Tabsets from different simulations"
+            href: tabsets.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
