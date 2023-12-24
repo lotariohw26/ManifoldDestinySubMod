@@ -16,3 +16,9 @@
 [submodule "MD_BOOK1"]
 	path = MD_BOOK1
 	url = https://github.com/lotariohw26/MD_BOOK1.git
+[submodule "MD_BOOK_2"]
+	path = MD_BOOK_2
+	url = https://github.com/lotariohw26/MD_BOOK_2.git
+[submodule "MD_BOOK2"]
+	path = MD_BOOK2
+	url = https://github.com/lotariohw26/MD_BOOK2.git
