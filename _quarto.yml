@@ -30,7 +30,7 @@ website:
       - text: E-books
         menu:
           - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
-            href: https://lotariohw26.github.io/GeneralElectionAnalysis
+            href: "https://lotariohw26.github.io/MD_BOOK1"
       - text: R in the browser
         menu:
           - text: "REPL"
