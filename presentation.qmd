@@ -1,11 +1,11 @@
 ---
 title: "Manifold Destiny - or how to rig an election"
 subtitle: "Based upon the ideas developed by Edward K. Solomon"
-format:
-  revealjs: 
-    smaller: true
-    toc-depth: 1
-    toc: true 
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
 webr: 
   show-startup-message: true    # Disable displaying status of webR initialization
   packages: ['dplyr'] # Install R packages on document open
@@ -14,24 +14,15 @@ filters:
 footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
-## Start here 
-
-```{webr-r}
-2+2
-```
-
-
-## More
-
 ```{r, echo=F, message=F, warning=F}
 library(ManifoldDestiny)
 library(RefManageR)
 library(huxtable)
-#modlat <- eqpar$meql
-#metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
+modlat <- eqpar$meql
+metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
 ```
 
 # `r #metad$toc$sec1$nmn`
@@ -39,15 +30,6 @@ library(huxtable)
  Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
-
-```{webr-r}
-2+2
-```
-
-
-```{r, eval=T}
-knitr::knit_exit()
-```
 
 
 ## `r metad$toc$sec1$unm[1]`
@@ -58,6 +40,7 @@ knitr::knit_exit()
 - Two modes of voting
   - Number of ballots mode 1: S, T
   - Number of ballots mode 2: U, V
+
 
 
 ##
@@ -80,8 +63,6 @@ towi[4,2] <- ""
 lego_hux_nor_i <- hux(towi[,1:3]) 
 lego_hux_nor_i 
 ```
-
-
 
 ```{r, echo=F, caption="Example 2"}
 ## Tower 2
@@ -650,10 +631,6 @@ knitr::include_graphics(c(p3))
 
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
-```{r}
-knitr::knit_exit()
-```
-
 # `r metad$toc$sec6$nmn`
 
 
@@ -663,6 +640,7 @@ app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
+
 
 ```{r, echo=FALSE, results='asis',warning=F}
 params <- list(name="2")
@@ -726,7 +704,7 @@ knitr::include_graphics(c(pr2h))
 - Our four applications
 
 ```{r, echo=F, warning=F, message=F}
-kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+#kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
 # `r metad$toc$sec8$nmn`
@@ -734,9 +712,6 @@ kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(f
 ::: {#refs}
 :::
 
-```{r, eval=F}
-knitr::knit_exit()
-```
 
 
 

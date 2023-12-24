@@ -1,0 +1,44 @@
+{
+  "title": "Manifold Destiny - or how to rig an election",
+  "tableofcontent": [
+	  {"toch": "Introduction",
+           "tocp":[
+		"Setting up the election system",
+		"Parametric tautologies in a election using standard form (north vs. south)",
+		"Parametric tautologies in a election using hybrid form (west vs. east)",
+		"Parametric tautologies in a election using opposition form (upper diagonal vs. lower diagonal)",
+		"Modelling the election process",
+		"How exogenous factors that influence the voting system will make changes to the election outcome through $\\zeta_i$",
+		"How exogenous factors that influence the voting system will make changes to the election outcome through $\\Gamma_i$"
+	   ]
+	  },
+	  {"toch": "Overview of various methods of ballot counting",
+           "tocp":[
+		   "Generic approach to ballot counting",
+		   "Counting in a fair election",
+		   "Counting in a rigged election",
+                   "The use of a loss-function and the practical limitations of such an algorithm"
+	   ]
+	  },
+	  {"toch": "Election simulations",
+           "tocp":[
+		   "Fair election",
+		   "Rigged election"
+	   ]
+	  },
+	  {"toch": "Literature review",
+           "tocp":[]
+	  },
+	  {"toch": "Checking for a rigged election",
+           "tocp":["Procedure"]
+	  },
+	  {"toch": "Applications",
+           "tocp":[]
+	  },
+	  {"toch": "Restoration"},
+	  {"toch": "Conclusions"},
+	  {"toch": "References"}
+  ],
+  "tabsets": [{"tab1":"Descriptive","tab2":"2d","tab3":"Scatter","tab4":"3d","tab5":"Regression","tab6":"Residuals"}]
+}
+

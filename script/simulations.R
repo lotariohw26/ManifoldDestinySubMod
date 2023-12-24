@@ -9,12 +9,12 @@ library(htmltools)
 library(huxtable)
 library(gridExtra)
 library(ManifoldDestiny)
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/misc_py.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R_S/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc_py.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
   dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
@@ -135,20 +135,20 @@ app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
 ####tdf$predictinput()
 ################################################################################################################################################################
 ######## Concluding Tabl
-#ctone <-'Applications'
-#formved <- c('Opposition', 
-#	     'Opposition', 
-#	     'Normal', 
-#	     'Opposition')
-#casevec <- c('Miller vs. Stavros, 2020',
-#'Gilbert vs. Sisiolak vs. Lombardo 2020',
-#'Lake vs. Hobbs, 2022',
-#'Trump vs. Biden, 2020')
-#propv_vec <- c("1rd & 2th","1rd & 2th","1rd & 2th","1rd & 2th")
-#prope_vec <- c("5th & 6th","5th & 6th","3rd & 4th","5th & 6th")
-#cou_abc <- c("Case","Form of rigg","Properties","Violations")
-#concl_appps <- data.frame(case=casevec,
-#			  rig=formved,
-#			  propn=prope_vec, 
-#			  propv=propv_vec)
+ctone <-'Applications'
+formved <- c('Opposition', 
+	     'Opposition', 
+	     'Normal', 
+	     'Opposition')
+casevec <- c('Miller vs. Stavros, 2020',
+'Gilbert vs. Sisiolak vs. Lombardo 2020',
+'Lake vs. Hobbs, 2022',
+'Trump vs. Biden, 2020')
+propv_vec <- c("1rd & 2th","1rd & 2th","1rd & 2th","1rd & 2th")
+prope_vec <- c("5th & 6th","5th & 6th","3rd & 4th","5th & 6th")
+cou_abc <- c("Case","Form of rigg","Properties","Violations")
+concl_appps <- data.frame(case=casevec,
+			  rig=formved,
+			  propn=prope_vec, 
+			  propv=propv_vec)
 ##################################################################################################################################################################

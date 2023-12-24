@@ -1,0 +1,304 @@
+{
+  "title": "Manifold Destiny - or how to rig an election",
+  "toc": {
+    "sec1": {
+	"nmn": ["Introduction"],
+	"unm": [
+	  "Setting up the election system",
+	  "Parametric tautologies in a election using standard form (north vs. south)",
+	  "Parametric tautologies in a election using hybrid form (west vs. east)",
+	  "Parametric tautologies in a election using opposition form (upper diagonal vs. lower diagonal)",
+	  "Modelling the election process",
+	  "How exogenous factors that influence the voting system will make changes to the election outcome through $\\zeta_i$",
+	  "How exogenous factors that influence the voting system will make changes to the election outcome through $\\Gamma_i$"
+	]
+    },
+    "sec2": {
+	"nmn": ["Overview of various methods of ballot counting"],
+	"unm": [
+	   "Generic approach to ballot counting",
+	   "Definitions (20 laws and 40 isometries)",
+	   "Counting in a fair election",
+	   "Counting in a rigged election",
+           "The use of a loss-function and the practical limitations of such an algorithm"
+	]
+    },
+    "sec3": {
+	"nmn": ["Election simulations"],
+	"unm": [
+	   "Fair election",
+	   "Rigged election"
+	]
+    },
+    "sec4": {
+	"nmn": ["Literature review"],
+	"unm": [
+           ""
+	]
+    },
+    "sec5": {
+	"nmn": ["Checking for a rigged election"],
+	"unm": [
+           "Procedure"
+	]
+    },
+    "sec6": {
+	"nmn": ["Applications"],
+	"unm": [
+           "Application 1:",
+           "Application 2:",
+           "Application 3:",
+           "Application 4:"
+	]
+    },
+    "sec7": {
+	"nmn": ["Conclusions"],
+	"unm": [
+           "Procedure"
+	]
+    },
+    "sec8": {
+	"nmn": ["References"],
+	"unm": [
+           "Application 1:",
+           "Application 2:",
+           "Application 3:"
+	]
+    }
+  },
+  "tabhead": ["Fair election","Rigged election normal form","Rigged election hybrid form","Rigged election hybrid form","Regression","Residuals"],
+  "tabsets": ["Descriptive","2d","Scatter","3d","Regression","Residuals"],
+  "packages" : [
+	  "dplyr",
+	  "ggplot2",
+          "bibtex", 
+	  "gganimate",
+	  "ggplot2",
+          "ggpmisc"
+  ],
+  "app0": {
+    "nid":"app0",
+    "nmn":"Simulation",
+   "race": {
+	"rcn": "Proto",
+	"cnd": ["T","B"],
+	"sta": "",
+	"cou": [],
+	"mod": ["EDV","MiV"],
+	"yea": 2023
+   },
+   "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0",
+	"pgn":1,
+	"rng":"A1:F23",
+        "cln":["PN","RN","A1","B1","A2","B2"],
+	"stuv":["A1","B1","A2","B2"]
+    },
+    "mtd" : {
+      "prg": {
+	"cnd":[0],
+	"stuv":[0,0,0,0],
+	"blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*x+k2*y",
+        "va":"y",
+        "fr":1,
+	"ro":[0,0,0]
+      }
+  }
+  },
+  "app1": {
+    "nid":"app1",
+    "nmn":"Presidential ...",
+   "race": {
+	"rcn": "Presidential",
+	"cnd": ["Trump (R)","Biden (D)"],
+	"sta": "Nevada",
+	"cou": ["Clark","Washoe"],
+	"mod": ["EV","MiV"],
+	"yea": 2020
+   },
+    "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0",
+	"pgn":1,
+	"rng":"A2:F1288",
+        "cln":["PN","RN","A1","B1","A2","B2"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg": {
+      	"cnd":[0],
+      	"stuv":[0,0,0,0],
+      	"blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*g+k2*h",
+        "va":"g",
+        "fr":2,
+	"ro":[0,0,0]
+   }
+  },
+  "bib":["sol2022i"]
+  },
+  "app2": {
+    "nid":"app2",
+    "nmn":"General",
+   "race": {
+	"rcn": "General Election",
+	"cnd": ["Stavros (R)","Millder(D)"],
+	"sta": "Nevada",
+	"cou": [],
+	"mod": ["ADV","MiV","EDV"],
+	"yea": 2020
+   },
+    "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0",
+	"pgn":2,
+	"rng":"A1:H151",
+        "cln":["PN","RN","A1","B1","A2","B2","A3","B3"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg": {
+      "cnd":[0],
+      "stuv":[0,0,0,0],
+      "blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3",
+        "va":"g",
+        "fr":2,
+	"ro":[0,0,0]
+   }
+  },
+  "bib":["https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al","abc"]
+  },
+  "app3": {
+    "nid":"app3",
+    "nmn":"abc",
+   "race": {
+	"rcn": "Governor",
+	"cnd": ["Lake (R)","Hobbs (D)"],
+	"sta": "Arizona",
+	"cou": ["Maricopa"],
+	"mod": ["EDV","MiV"],
+	"yea": 2022
+   },
+    "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=301195549",
+	"pgn":1,
+	"rng":"G5:O940",
+        "cln":["PC","PN","RN","A0","A1","A2","B0","B1","B2"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg": {
+       "cnd":[0],
+       "stuv":[0,0,0,0],
+       "blup":[0,1]
+       },
+      "frm":1,
+      "sgs": {
+        "eq":"alpha=k0+k1*x+k2*y",
+        "va":"y",
+        "fr":1,
+	"ro":[0,0,0]
+   }
+  },
+   "bib":[]
+  },
+  "app4": {
+    "nid":"app4",
+    "nmn":"abc",
+   "race": {
+	"rcn": "",
+	"cnd": ["Fritz","Ferry"],
+	"sta": "Nevada",
+	"cou": [],
+	"mod": ["ADV","MiV","EDV","Prov"],
+	"yea": 2020
+   },
+    "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/1xN7lvxt1bHodRgHDk_wqJ9b1g3dZGSGKmSxIASPCGCI/edit#gid=301195549",
+	"pgn":3,
+	"rng":"A5:K315",
+        "cln":["CO","PN","RN","D1","D2","A1","A2","A3","B1","B2","B3"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg": {
+       "cnd":[0],
+       "stuv":[0,0,0,0],
+       "blup":[0,1]
+       },
+      "frm":1,
+      "sgs": {
+        "eq":"alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3",
+        "va":"g",
+        "fr":1	
+   }
+  },
+  "bib":[""]
+  },
+  "app5": {
+    "nid":"app5",
+    "nmn":"abc",
+   "race": {
+	"rcn": "Presidiential",
+	"cnd": ["Trump (R)","Biden (D)","Jorg (I)"],
+	"sta": "Georgia",
+	"cou": ["Atlanta"],
+	"mod": ["ADV","MiV","EDV"],
+	"yea": 2020
+   },
+    "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/1HoOpkuWDnfTG-mezrCBd7t04gb0YkhA5YDMzcgK-MVo/edit#gid=0",
+	"pgn":2,
+	"rng":"A1:H151",
+        "cln":["PN","R","A1","B1","A2","B2","A3","B3"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg":[1],
+      "frm":1,
+      "sgs": {
+        "eq":"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3",
+        "va":"g",
+        "fr":1	
+   }
+  },
+  "bib":["https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit"]
+  },  
+  "app6": {
+    "nid":"app6",
+    "nmn":"abc",
+   "race": {
+	"rcn": "General Election",
+	"cnd": ["Marchant (R)","Cisco (D)"],
+	"sta": "Nevada",
+	"cou": [],
+	"mod": ["ADV","MiV","EDV"],
+	"yea": 2020
+   },
+    "sht":{
+	"url":["https://docs.google.com/spreadsheets/d/1v9-bAI9INnjgfInEJBHNBp4D7N3-Opf4nDKJbzxdBrk/edit#gid=1531166097'"],
+	"pgn":2,
+	"rng":"A1:H151",
+        "cln":["PN","R","A1","B1","A2","B2","A3","B3"],
+	"stuv":["A1","B1","A2","B2"]
+   },
+    "mtd" : {
+      "prg":[1],
+      "frm":1,
+      "sgs": {
+        "eq":"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3",
+        "va":"g",
+        "fr":1	
+   }
+  },
+  "bib":[""]
+  },
+  "bow":[1,2,3]
+}
+

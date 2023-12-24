@@ -1,0 +1,112 @@
+---
+title: "Applicaton"
+date: "`r Sys.Date()`"
+#format: 
+#  html:
+#    page-layout: article
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
+params:
+  name: "0"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, eval=F, echo=F, message=F, warning=F}
+pre_fil <- paste0(rprojroot::find_rstudio_root_file(),'/app_par.qmd')
+quarto::quarto_preview(pre_fil)
+params <- list(name="0")
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#lapply(paste0("app",0:4), function(x){recoudatr(mda=md[[x]])})
+```
+
+```{r, echo=F, warning=F, message=F}
+library(ManifoldDestiny)
+library(RefManageR)
+library(huxtable)
+library(ggplot2)
+library(dplyr)
+library(htmltools)
+library(plotly)
+library(usethis)
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
+```
+
+
+
+
+
+
+
+```{r}
+# Start on 50
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+mda <- md[[paste0("app",params$name)]]
+apprda <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/app',params$name,".rda")))
+app_a_out <- seloutput(selreport(apprda,mda))
+```
+
+## Application: `r mda$nmn`
+
+### Information
+- Election system:
+  - Type of race: `r mda$race$rcn` 
+  - Candidates: `r mda$race$cnd` 
+  - Modes of voting: `r mda$race$mod` 
+
+- $H_0:$ Normal election 
+- $H_1:$ Rigged election: 
+  - Manifold object `r mda$mtd$sgs$eq[1]`
+  - Solved for `r mda$mtd$sgs$va`
+
+[Link to raw data and independent calculcations](`r mda$sht$url`)
+[@sol2022_1]
+
+::: {.panel-tabset}
+### `r mda$tabsets[[1]]`
+```{r, echo=F}
+kableExtra::kbl(app_a_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### `r mda$tabsets[[2]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['corxy']]
+```
+### `r mda$tabsets[[3]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['qunt']]
+```
+### `r mda$tabsets[[4]]`
+```{r, echo=F}
+app_a_out[['ro3d']]
+```
+### `r mda$tabsets[[5]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['regr']]
+```
+### `r mda$tabsets[[6]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['resp']]
+```
+:::
+
+### Ballot predictions based on limit information implied by the estimated Manifold object(s)
+
+```{r, echo=F}
+#app_a_out$cmp[,1] <- c("Mean total votes", "Number of precincts", "Zero prediction error", "In percentage", "Mean", "Standard Deviation", "Max ballot error", "1+/- prediction error", "2+/- prediction error", "2+/- prediction error", "Percentage within +/-3")
+#kableExtra::kbl(app_a_out$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
+```
+
+### References
+
+::: {#refs}
+:::
+
