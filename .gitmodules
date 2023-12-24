@@ -13,3 +13,6 @@
 [submodule "GeneralElectionAnalysis"]
 	path = GeneralElectionAnalysis
 	url = https://github.com/lotariohw26/GeneralElectionAnalysis.git
+[submodule "MD_BOOK1"]
+	path = MD_BOOK1
+	url = https://github.com/lotariohw26/MD_BOOK1.git
