@@ -247,7 +247,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <p id="str">
 </p>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js">
+  let pyodide = await loadPyodide();
+  console.log(pyodide.runPython("1 + 2"));
+</script>
+<p><py-script>print(“Hello, World!”)</py-script></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

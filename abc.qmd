@@ -6,7 +6,12 @@ title: "Python"
 <p id=nmb></p>
 <p id=str></p>
     
-<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js">
+  let pyodide = await loadPyodide();
+  console.log(pyodide.runPython("1 + 2"));
+</script>
+ 
+<py-script>print("Hello, World!")</py-script>
 
 ```{r}
 knitr::knit_exit()

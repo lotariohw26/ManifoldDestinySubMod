@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lotariohw26.github.io/ManifoldDestiny/def.html</loc>
+    <lastmod>2023-12-25T10:51:08.675Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lotariohw26.github.io/ManifoldDestiny/tabsets.html</loc>
+    <lastmod>2023-12-23T23:25:07.006Z</lastmod>
+  </url>
+  <url>
     <loc>https://lotariohw26.github.io/ManifoldDestiny/laws.html</loc>
     <lastmod>2023-11-09T20:34:43.560Z</lastmod>
   </url>
@@ -13,19 +21,11 @@
     <lastmod>2023-12-24T05:53:18.953Z</lastmod>
   </url>
   <url>
-    <loc>https://lotariohw26.github.io/ManifoldDestiny/tabsets.html</loc>
-    <lastmod>2023-12-23T23:25:07.006Z</lastmod>
-  </url>
-  <url>
     <loc>https://lotariohw26.github.io/ManifoldDestiny/man_bib.html</loc>
     <lastmod>2023-12-22T17:01:06.233Z</lastmod>
   </url>
   <url>
     <loc>https://lotariohw26.github.io/ManifoldDestiny/abc.html</loc>
-    <lastmod>2023-12-25T10:05:03.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lotariohw26.github.io/ManifoldDestiny/def.html</loc>
-    <lastmod>2023-12-25T10:03:54.459Z</lastmod>
+    <lastmod>2023-12-25T10:52:27.175Z</lastmod>
   </url>
 </urlset>
