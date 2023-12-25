@@ -263,6 +263,6 @@
     "href": "abc.html",
     "title": "Python",
     "section": "",
-    "text": "print(“Hello, World!”)\n\nknitr::knit_exit()"
+    "text": "Pyodide test page  Open your browser console to see Pyodide output\n\n\n\nknitr::knit_exit()"
   }
 ]
