@@ -7,7 +7,8 @@ project:
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
-
+    - "abc.qmd"
+    - "def.qmd"
 website:
   title: "Manifold Destiny"
   navbar:
@@ -37,6 +38,10 @@ website:
             href: https://webr.r-wasm.org/latest/
           - text: "Shiny"
             href: https://lotariohw26.github.io/MD_WASMS/r/examples/
+          - text: "Python API"
+            href: "abc.qmd"
+          - text: "R API"
+            href: "def.html"
       - text: Bibliography
         href: man_bib.qmd
       - text: Appendix

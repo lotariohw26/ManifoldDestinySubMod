@@ -264,5 +264,19 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "Condition on that \\(R^2\\) falls within the critical region.\n\nNormal form\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid form\n\n\n\n\n\n\n\n\n\n\n\nOur four applications"
+  },
+  {
+    "objectID": "abc.html",
+    "href": "abc.html",
+    "title": "Python",
+    "section": "",
+    "text": "knitr::knit_exit()"
+  },
+  {
+    "objectID": "def.html",
+    "href": "def.html",
+    "title": "R",
+    "section": "",
+    "text": "knitr::knit_exit()"
   }
 ]

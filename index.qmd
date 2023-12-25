@@ -32,7 +32,6 @@ ls(package:ManifoldDestinyWASMD)
 knitr::knit_exit()
 ```
 
-
 [From Bard:](https://g.co/bard/share/37bfadf733c5)
 
 Published July 22, 2023 at 05:37 AM

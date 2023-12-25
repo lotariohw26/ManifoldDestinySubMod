@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Manifold Destiny</title>
+<title>Manifold Destiny - Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,35 +101,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -171,6 +176,14 @@ window.Quarto = {
     <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/">
  <span class="dropdown-text">Shiny</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./abc.html">
+ <span class="dropdown-text">Python API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./def.html">
+ <span class="dropdown-text">R API</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -204,301 +217,42 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#laws-and-40-isometris" id="toc-laws-and-40-isometris" class="nav-link active" data-scroll-target="#laws-and-40-isometris">20 laws and 40 isometris</a></li>
-  <li><a href="#proportions-and-ratios" id="toc-proportions-and-ratios" class="nav-link" data-scroll-target="#proportions-and-ratios">Proportions and ratios</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/laws.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python</h1>
+</div>
 
 
 
-<section id="laws-and-40-isometris" class="level1">
-<h1>20 laws and 40 isometris</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p id="ary">
+</p>
+<p id="nmb">
+</p>
+<p id="str">
+</p>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 <div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 31%">
-<col style="width: 31%">
-<col style="width: 31%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Law_Number</th>
-<th style="text-align: left;">North_vs_South</th>
-<th style="text-align: left;">West_vs_East</th>
-<th style="text-align: left;">Diagonal_vs_Diagonal</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">First Law</td>
-<td style="text-align: left;"><span class="math inline">\(x_{1}=\alpha_{1}+\zeta(\alpha_{1}-y_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g_{1}=\alpha_{1}+\gamma(\alpha_{1}-h_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(m_{1}=\Omega_{1}+\xi(\Omega_{1}-n_{1})\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Second Law</td>
-<td style="text-align: left;"><span class="math inline">\(x_{1}=\lambda_{1}+\zeta(\lambda_{1}-y_{2})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g_{1}=\Omega_{1}+\gamma(\Omega_{1}-h_{2})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(m_{1}=\lambda_{1}+\xi(\lambda_{1}-n_{2})\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Third Law</td>
-<td style="text-align: left;"><span class="math inline">\(x_{1}=\frac{\alpha_{1}y_{2}-\lambda_{1}y_{1}}{(\alpha_{1}-\lambda_{1})-(y_{1}-y_{2})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g_{1}=\frac{\alpha_{1}h_{2}-\Omega_{1}h_{1}}{(\alpha_{1}-\Omega_{1})-(h_{1}-h_{2})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(m_{1}=\frac{\Omega_{1}n_{2}-\lambda_{1}n_{1}}{(\Omega_{1}-\lambda_{1})-(n_{1}-n_{2})}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fourth Law</td>
-<td style="text-align: left;"><span class="math inline">\(x_{1}=\frac{\lambda_{1}+\alpha_{1}-\Omega_{2}}{2\Omega_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g_{1}=\frac{\Omega_{1}+\alpha_{1}-\lambda_{2}}{2\lambda_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(m_{1}=\frac{\lambda_{1}+\Omega_{1}-\alpha_{2}}{2\alpha_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Fifth Law</td>
-<td style="text-align: left;"><span class="math inline">\(y_{1}=\alpha_{1}-\zeta^{-1}(\alpha_{1}-x_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{1}=\alpha_{1}-\gamma^{-1}(\alpha_{1}-g_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{1}=\Omega_{1}-\xi^{-1}(\Omega_{1}-m_{1})\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sixth Law</td>
-<td style="text-align: left;"><span class="math inline">\(y_{1}=\lambda_{2}-\zeta^{-1}(\lambda_{1}-x_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{1}=\Omega_{2}-\gamma^{-1}(\Omega_{1}-g_{1})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{1}=\lambda_{2}-\xi^{-1}(\lambda_{1}-m_{1})\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Seventh Law</td>
-<td style="text-align: left;"><span class="math inline">\(y_{1}=\frac{x_{1}\lambda_{2}-x_{2}\alpha_{1}}{(\lambda_{2}-\alpha_{1})-(x_{2}-x_{1})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{1}=\frac{g_{1}\Omega_{2}-g_{2}\alpha_{1}}{(\Omega_{2}-\alpha_{1})-(g_{2}-g_{1})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{1}=\frac{m_{1}\lambda_{2}-m_{2}\Omega_{1}}{(\lambda_{2}-\Omega_{1})-(m_{2}-m_{1})}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Eighth Law</td>
-<td style="text-align: left;"><span class="math inline">\(y_{1}=\frac{\lambda_{2}+\alpha_{1}-\Omega_{1}}{2\Omega_{2}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{1}=\frac{\Omega_{2}+\alpha_{1}-\lambda_{1}}{2\lambda_{2}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{1}=\frac{\lambda_{2}+\Omega_{1}-\alpha_{1}}{2\alpha_{2}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ninth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{1}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\Omega_{1}(x_{1}-x_{2})+\lambda_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\lambda_{1}(g_{1}-g_{2})+\Omega_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\alpha_{1}(m_{1}-m_{2})+\lambda_{2}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Eleventh Law</td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\Omega_{2}(y_{1}-y_{2})+\lambda_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\lambda_{2}(h_{1}-h_{2})+\Omega_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\alpha_{2}(n_{1}-n_{2})+\lambda_{1}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Twelfth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{x_{1}(y_{2}-y_{1})-\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{g_{1}(h_{2}-h_{1})-\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{m_{1}(n_{2}-n_{1})-\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Thirteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{2}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fourteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\Omega_{1}(x_{1}-x_{2})+\alpha_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\lambda_{1}(g_{1}-g_{2})+\alpha_{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\alpha_{1}(m_{1}-m_{2})+\Omega_{2}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Fifteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\frac{\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\frac{\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sixteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\Omega_{2}(y_{2}-y_{1})+\alpha_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\lambda_{2}(h_{2}-h_{1})+\alpha_{1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\alpha_{2}(n_{2}-n_{1})+\Omega_{1}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Seventeenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{x_{1}-\alpha_{1}}{\alpha_{1}-y_{1}};\Omega_{1}=\frac{y_{1}-\alpha_{1}}{y_{1}-x_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{g_{1}-\alpha_{1}}{\alpha_{1}-h_{1}};\lambda_{1}=\frac{h_{1}-\alpha_{1}}{h_{1}-g_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi=\frac{m_{1}-\Omega_{1}}{\Omega_{1}-n_{1}};\alpha_{1}=\frac{n_{1}-\Omega_{1}}{n_{1}-m_{1}}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Eighteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{\lambda_{2}-\alpha_{1}}{x_{2}-x_{1}}=\frac{\alpha_{2}-\lambda_{1}}{x_{2}-x_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma_{1}=\frac{\Omega_{2}-\alpha_{1}}{g_{2}-g_{1}}=\frac{\alpha_{2}-\Omega_{1}}{g_{2}-g_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{\lambda_{2}-\Omega_{1}}{m_{2}-m_{1}}=\frac{\Omega_{2}-\lambda_{1}}{m_{2}-m_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nineteenth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{x_{1}-\lambda_{1}}{\lambda_{1}-y_{2}}; \Omega_{1}=\frac{y_{2}-\lambda_{1}}{y_{2}-x_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{g_{1}-\Omega_{1}}{\Omega_{1}-h_{2}}; \lambda_{1}=\frac{h_{2}-\Omega_{1}}{h_{2}-g_{1}}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi=\frac{m_{1}-\lambda_{1}}{\lambda_{1}-n_{2}}; \alpha_{1}=\frac{n_{2}-\lambda_{1}}{n_{2}-m_{1}}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Twentieth Law</td>
-<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{\lambda_{1}-\alpha_{1}}{(y_{2}-y_{1})+(\alpha_{1}-\lambda_{1})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{\Omega_{1}-\alpha_{1}}{(h_{2}-h_{1})+(\alpha_{1}-\Omega_{1})}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi=\frac{\lambda_{1}-\Omega_{1}}{(n_{2}-n_{1})+(\Omega_{1}-\lambda_{1})}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="proportions-and-ratios" class="level1">
-<h1>Proportions and ratios</h1>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 16%">
-<col style="width: 19%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">V1</th>
-<th style="text-align: left;">V2</th>
-<th style="text-align: left;">V3</th>
-<th style="text-align: left;">V4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">North Ratio</td>
-<td style="text-align: left;">South Ratio</td>
-<td style="text-align: left;">North Complement</td>
-<td style="text-align: left;">South Complement</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(x_{1} = \frac{s}{s+t}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(y_{1} = \frac{u}{u+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(x_{2} = (1-x_{1}) = \frac{t}{s+t}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(y_{2} = (1-y_{1}) = \frac{v}{u+v}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">West Ratio</td>
-<td style="text-align: left;">East Ratio</td>
-<td style="text-align: left;">West Complement</td>
-<td style="text-align: left;">East Complement</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(g_{1} = \frac{s}{s+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{1} = \frac{u}{u+t}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g_{2} = (1-g_{1}) = \frac{v}{s+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h_{2} = (1-h_{1}) = \frac{t}{u+t}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Northwest Ratio</td>
-<td style="text-align: left;">Northeast Ratio</td>
-<td style="text-align: left;">Southeast Ratio</td>
-<td style="text-align: left;">Southwest Ratio</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(m_{1} = \frac{s}{s+u}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{1} = \frac{t}{t+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(m_{2} = (1-m_{1}) = \frac{u}{s+u}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(n_{2} = (1-n_{1}) = \frac{v}{t+v}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Diagonal Aggregate</td>
-<td style="text-align: left;">Diagonal Proportion</td>
-<td style="text-align: left;">1st Alpha Identity</td>
-<td style="text-align: left;">Xi Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1} = \frac{s+u}{(s+u)+(t+v)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi = \frac{t+v}{s+u}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{1} = (\xi+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi = \frac{1-\alpha_{1}}{\alpha_{1}} = \frac{\alpha_{2}}{\alpha_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Diagonal Complement</td>
-<td style="text-align: left;">Diagonal Inverse</td>
-<td style="text-align: left;">2nd Alpha Identity</td>
-<td style="text-align: left;">Inverse Xi Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\alpha_{2} = \frac{t+v}{(s+u)+(t+v)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi^{-1} = \frac{s+u}{t+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\alpha_{2} = (\xi^{-1}+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\xi^{-1} = \frac{1-\alpha_{2}}{\alpha_{2}} = \frac{\alpha_{1}}{\alpha_{2}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">West Aggregate</td>
-<td style="text-align: left;">East to West Proportion</td>
-<td style="text-align: left;">1st Lambda Identity</td>
-<td style="text-align: left;">Gamma Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1} = \frac{s+v}{(s+v)+(u+t)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma = \frac{u+t}{s+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{1} = (\gamma+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma = \frac{1-\lambda_{1}}{\lambda_{1}} = \frac{\lambda_{2}}{\lambda_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">East Aggregate</td>
-<td style="text-align: left;">West to East Proportion</td>
-<td style="text-align: left;">2nd Lambda Identity</td>
-<td style="text-align: left;">Inverse Gamma Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\lambda_{2} = \frac{u+t}{(s+v)+(u+t)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma^{-1} = \frac{s+v}{u+t}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\lambda_{2} = (\gamma^{-1}+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\gamma^{-1} = \frac{1-\lambda_{2}}{\lambda_{2}} = \frac{\lambda_{1}}{\lambda_{2}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">North Aggregate</td>
-<td style="text-align: left;">South to North Proportion</td>
-<td style="text-align: left;">1st Omega Identity</td>
-<td style="text-align: left;">Zeta Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1} = \frac{s+t}{(s+t)+(u+v)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\zeta = \frac{u+v}{s+t}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{1} = (\zeta+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\zeta = \frac{1-\Omega_{1}}{\Omega_{1}} = \frac{\Omega_{2}}{\Omega_{1}}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">South Aggregate</td>
-<td style="text-align: left;">North to South Proportion</td>
-<td style="text-align: left;">2nd Omega Identity</td>
-<td style="text-align: left;">Inverse Zeta Identity</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\Omega_{2} = \frac{u+v}{(s+t)+(u+v)}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\zeta^{-1} = \frac{s+t}{u+v}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\Omega_{2} = (\zeta^{-1}+1)^{-1}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\zeta^{-1} = \frac{1-\Omega_{2}}{\Omega_{2}} = \frac{\Omega_{1}}{\Omega_{2}}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -891,7 +645,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/laws.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/abc.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

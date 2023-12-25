@@ -1,0 +1,43 @@
+---
+title: "R"
+---
+
+<p id=ary></p>
+<p id=nmb></p>
+<p id=str></p>
+
+<script type=module>
+  /* create a webr console using the console helper class */
+  import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
+</script>
+
+
+```{r}
+knitr::knit_exit()
+```
+
+<p id=ary></p>
+<p id=nmb></p>
+<p id=str></p>
+
+<script type=module>
+  /* create a webr console using the console helper class */
+  import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
+  const webR = new WebR();
+  await webR.init();
+  await webR.evalR("webr::install('dplyr', repos = 'https://joernih.github.io/rwasm_repo/repo')");
+  await webR.FS.mkdir('/data');
+  //let res0 = await webR.evalR("webr::mount(mountpoint='/data',source= 'https://joernih.github.io/rwasm_repo/data/prg.data')");
+  let res0 = await webR.evalR("webr::mount(mountpoint='/data',source= 'https://joernih.github.io/data/prg.data')");
+  let res1 = await webR.evalR("rnorm(10,5,1)");
+  let res2 = await webR.evalR("123456");
+  let res3 = await webR.evalR("abc <- read.csv('/data/biler.csv'); abc[,1]");
+  let out1 = await res1.toArray();
+  let out2 = await res2.toArray();
+  let out3 = await res3.toArray();
+  document.getElementById('ary').textContent = out1.join(', ');
+  document.getElementById('nmb').textContent = out2;
+  document.getElementById('str').textContent = out3;
+</script>
+
+
